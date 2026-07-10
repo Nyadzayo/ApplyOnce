@@ -81,9 +81,40 @@ Permission justifications:
 - alarms/notifications: User-scheduled follow-up reminders for applications.
 - sidePanel: Hosts the review UI where the user approves every fill.
 
-Privacy tab: collects PII (name/contact), professional background, website
-content (form structure) — all stored locally, none transmitted/sold/shared.
-Certify Limited Use. Privacy policy: https://nyadzayo.github.io/ApplyOnce/privacy.html
+### Privacy tab — exact checkbox answers
+
+Data types collected (check ONLY these three):
+[x] Personally identifiable information
+    (user-entered profile: name, email, phone, address; resume file)
+[x] Web history
+    (job-page URLs, titles, and visit times stored in the LOCAL application
+    tracker only)
+[x] Website content
+    (form structure read to fill; optional posting-text snapshot, local only)
+
+Leave UNCHECKED: Health information; Financial and payment information
+(salary expectation is user-entered profile data, not transactions/cards);
+Authentication information (the optional vault passphrase is never stored or
+transmitted); Personal communications; Location (city/country are typed by
+the user, no IP/GPS collection); User activity (no monitoring, clickstream,
+or keylogging — the fill log records the extension's own actions, structure
+only).
+
+Certifications (check all three — all true):
+[x] I do not sell or transfer user data to third parties, outside of the
+    approved use cases
+[x] I do not use or transfer user data for purposes that are unrelated to my
+    item's single purpose
+[x] I do not use or transfer user data to determine creditworthiness or for
+    lending purposes
+
+Remote code: "No, I am not using remote code" (MV3; everything is bundled).
+
+Privacy policy URL (required because data types are declared):
+https://nyadzayo.github.io/ApplyOnce/privacy.html
+The policy enumerates exactly the three declared categories, states zero
+transmission, and carries the Limited Use compliance statement — keep it in
+lockstep with these checkboxes on every future change.
 
 ## Don'ts (from the research)
 - No Workday in keywords until the adapter is genuinely good (reviews enforce).
