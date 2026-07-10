@@ -1,0 +1,20 @@
+name: Feature request
+description: A job board we should support, a field type we miss, or an idea
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like ApplyOnce to do?
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Which job board / site is this about? (if any)
+      placeholder: e.g. Workday, iCIMS, a specific careers site
+  - type: markdown
+    attributes:
+      value: |
+        Note: auto-submit will never be built. You review, you submit.

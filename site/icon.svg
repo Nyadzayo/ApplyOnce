@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- ApplyOnce mark: a stamp. One application, one bold check — stamped done.
+       Ultramarine "stamp ink" (#0065AD) on paper; inner hairline reads as the
+       stamp's embossed edge and keeps the mark crisp at 16px. -->
+  <rect x="6" y="6" width="116" height="116" rx="30" fill="#0065AD"/>
+  <rect x="13" y="13" width="102" height="102" rx="24" fill="none"
+        stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="3"/>
+  <path d="M 38 66 L 57 86 L 92 42"
+        fill="none" stroke="#FFFFFF" stroke-width="14"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

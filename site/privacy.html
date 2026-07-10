@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy policy — ApplyOnce</title>
+<meta name="description" content="ApplyOnce privacy policy: everything is stored locally on your device. Nothing is transmitted. No analytics, no accounts, no telemetry." />
+<link rel="icon" type="image/svg+xml" href="icon.svg" />
+<style>
+  :root {
+    --paper:#f8fafc; --card:#ffffff; --ink:#1b252e; --muted:#59656f;
+    --line:#dfe3e7; --stamp:#0065ad; --stamp-wash:#eef6fe;
+    --font:"Avenir Next","Seravek","Segoe UI Variable Text","Segoe UI",system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper:#0e1318; --card:#161d22; --ink:#e5e8ec; --muted:#88949e;
+            --line:#272f35; --stamp:#4e9cda; --stamp-wash:#002b4b; }
+  }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--paper); color:var(--ink); font-family:var(--font); line-height:1.65; }
+  .wrap { max-width: 720px; margin:0 auto; padding: 0 24px 64px; }
+  header.top { display:flex; align-items:center; gap:10px; padding:20px 0 36px; font-weight:650; font-size:17px; }
+  header.top img { width:26px; height:26px; }
+  header.top b { color:var(--stamp); font-weight:650; }
+  header.top a { margin-left:auto; font-size:14px; color:var(--muted); text-decoration:none; }
+  header.top a:hover { color:var(--stamp); }
+  h1 { font-size:30px; letter-spacing:-0.01em; margin-bottom:6px; }
+  .date { color:var(--muted); font-size:13.5px; margin-bottom:28px; }
+  h2 { font-size:13px; font-weight:650; letter-spacing:.09em; text-transform:uppercase;
+       color:var(--muted); margin:32px 0 10px; display:flex; align-items:center; gap:10px; }
+  h2::after { content:""; flex:1; height:1px; background:var(--line); }
+  p, li { font-size:15px; }
+  p { margin-bottom:12px; }
+  ul { padding-left:22px; margin-bottom:12px; }
+  li { margin-bottom:6px; }
+  .callout { background:var(--stamp-wash); border:1px solid var(--line); border-radius:12px;
+             padding:16px 18px; margin: 18px 0 6px; font-size:15px; }
+  a { color:var(--stamp); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <img src="icon.svg" alt="" />Apply<b>Once</b>
+    <a href="index.html">← Back</a>
+  </header>
+
+  <h1>Privacy policy</h1>
+  <p class="date">Effective July 10, 2026 · Applies to the ApplyOnce browser extension</p>
+
+  <div class="callout">
+    The short version: everything ApplyOnce knows lives in your browser on
+    your device. Nothing is transmitted to us or anyone else. There are no
+    accounts, no analytics, and no telemetry.
+  </div>
+
+  <h2>What ApplyOnce stores, and where</h2>
+  <p>All of the following is stored locally in your browser's extension storage
+     (IndexedDB) on your device, and nowhere else:</p>
+  <ul>
+    <li><strong>Your profile</strong> — name, contact details, links, work history,
+        education, skills, and the explicit answers you set (work authorization,
+        salary, optional EEO self-identification).</li>
+    <li><strong>Your documents</strong> — the resume/cover-letter files you add, kept
+        so they can be attached to application forms.</li>
+    <li><strong>Saved answers</strong> — responses you chose to save for reuse.</li>
+    <li><strong>Application history</strong> — job page titles, links, statuses,
+        reminders, and fill statistics. Never the values that were filled.</li>
+    <li><strong>A diagnostics log</strong> — the structure of your last 50 fills
+        (field types, outcomes, confidence). Never field values, never profile data.</li>
+  </ul>
+  <p>You can optionally encrypt the profile, documents, and saved answers with a
+     passphrase (AES-GCM). Without one, data is stored in plain IndexedDB and
+     protected by your operating-system user account — that's the honest
+     description of both modes.</p>
+
+  <h2>What is transmitted</h2>
+  <p><strong>Nothing.</strong> ApplyOnce makes no network requests. It has no
+     backend, no analytics SDK, no crash reporter, and no account system. The
+     only network activity involving the extension is your browser downloading
+     it from the store.</p>
+
+  <h2>Why it asks to read websites</h2>
+  <p>ApplyOnce needs access to the pages you visit so it can detect job
+     application forms and fill them. That detection runs entirely on your
+     device: a scoring check decides whether a page looks like a job
+     application, and ordinary pages (articles, shops, logins, banking) are
+     ignored without deep scanning. Page content is never sent anywhere —
+     there is nowhere to send it.</p>
+
+  <h2>What ApplyOnce never does</h2>
+  <ul>
+    <li>Never submits an application — you always press submit yourself.</li>
+    <li>Never fills a value it can't trace to your profile or saved answers.</li>
+    <li>Never sells, shares, or transmits your data (there's no data to sell —
+        it isn't in our possession).</li>
+    <li>Never fills EEO or legal questions except from answers you explicitly set.</li>
+  </ul>
+
+  <h2>Bug reports</h2>
+  <p>If you choose to report a bug, the extension copies a structure-only
+     diagnostics log to <em>your clipboard</em> and opens a GitHub issue form.
+     You see exactly what's in it, and you decide whether to paste it. Nothing
+     is submitted automatically.</p>
+
+  <h2>Deleting your data</h2>
+  <p>Everything can be deleted in the side panel (documents, saved answers,
+     history, diagnostics log), and removing the extension deletes all of it
+     at once. Because nothing exists outside your device, there is nothing
+     else to request deletion of.</p>
+
+  <h2>Chrome Web Store disclosures</h2>
+  <p>ApplyOnce's use of information complies with the
+     <a href="https://developer.chrome.com/docs/webstore/program-policies/limited-use">Chrome Web Store User Data Policy, including the Limited Use requirements</a>.
+     Data handled by the extension is used solely to provide its single
+     purpose: filling job application forms with your locally stored profile.</p>
+
+  <h2>Changes and contact</h2>
+  <p>If this policy ever changes in a way that affects how data is handled,
+     the extension will disclose the change prominently before it applies.
+     Questions: <a href="https://github.com/Nyadzayo/ApplyOnce/issues">open an issue on GitHub</a>.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: How ApplyOnce works / privacy
+    url: https://nyadzayo.github.io/ApplyOnce/
+    about: What is stored (locally), what is transmitted (nothing), and how filling works.

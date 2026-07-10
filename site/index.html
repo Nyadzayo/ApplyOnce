@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ApplyOnce — Job application autofill that never guesses</title>
+<meta name="description" content="Fill job applications on Greenhouse, Lever, Ashby and more from a profile stored only on your device. You review, you submit. One-click undo." />
+<meta property="og:title" content="ApplyOnce — Apply once. Everywhere." />
+<meta property="og:description" content="Job application autofill that never auto-submits. Your data never leaves your device." />
+<link rel="icon" type="image/svg+xml" href="icon.svg" />
+<style>
+  /* ApplyOnce "ink & stamp" — graded OKLCH ramp, hue 245 (see repo sidepanel.css) */
+  :root {
+    --paper:#f8fafc; --card:#ffffff; --ink:#1b252e; --muted:#59656f;
+    --line:#dfe3e7; --line-strong:#cad0d6;
+    --stamp:#0065ad; --stamp-deep:#00508f; --stamp-wash:#eef6fe;
+    --good:#267b4c; --good-wash:#e2f4e7; --warn:#9a6418; --warn-wash:#f9efda;
+    --radius:12px;
+    --font: "Avenir Next","Seravek","Segoe UI Variable Text","Segoe UI",system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:#0e1318; --card:#161d22; --ink:#e5e8ec; --muted:#88949e;
+      --line:#272f35; --line-strong:#384149;
+      --stamp:#4e9cda; --stamp-deep:#86beee; --stamp-wash:#002b4b;
+      --good:#68b986; --good-wash:#1d2d22; --warn:#d7a459; --warn-wash:#322714;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--font); line-height: 1.55; }
+  a { color: var(--stamp); }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+  header.top { display:flex; align-items:center; justify-content:space-between; padding: 20px 0; }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:650; font-size:18px; }
+  .brand b { color: var(--stamp); font-weight:650; }
+  .brand img { width:28px; height:28px; }
+  nav.links { display:flex; gap:20px; font-size:14px; }
+  nav.links a { color: var(--muted); text-decoration:none; }
+  nav.links a:hover { color: var(--stamp); }
+
+  .hero { display:grid; grid-template-columns: 1.1fr 1fr; gap:48px; align-items:center; padding: 56px 0 64px; }
+  @media (max-width: 780px) { .hero { grid-template-columns: 1fr; padding-top: 24px; } }
+  h1 { font-size: clamp(34px, 5vw, 52px); line-height:1.08; letter-spacing:-0.02em; font-weight:700; }
+  h1 .once { color: var(--stamp); }
+  .sub { color: var(--muted); font-size:18px; margin: 18px 0 26px; max-width: 46ch; }
+  .cta { display:flex; gap:12px; flex-wrap:wrap; }
+  .btn { display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:15px;
+         border-radius:10px; padding:12px 20px; text-decoration:none; border:1px solid transparent; }
+  .btn.primary { background: var(--stamp); color:#fff; }
+  .btn.primary:hover { background: var(--stamp-deep); }
+  .btn.ghost { border-color: var(--line-strong); color: var(--ink); background: var(--card); }
+  .btn.ghost:hover { border-color: var(--muted); }
+  .fine { font-size:12.5px; color:var(--muted); margin-top:14px; }
+
+  /* the signature: a mini application form that fills itself, on loop */
+  .demo { background: var(--card); border:1px solid var(--line); border-radius: var(--radius);
+          padding: 22px; box-shadow: 0 10px 40px rgba(27,37,46,.10); }
+  .demo h3 { font-size:13px; color:var(--muted); font-weight:600; letter-spacing:.08em;
+             text-transform:uppercase; margin-bottom:14px; display:flex; justify-content:space-between; }
+  .demo h3 .badge { color:var(--stamp); letter-spacing:0; text-transform:none; font-weight:600; }
+  .frow { margin-bottom:12px; }
+  .frow label { display:block; font-size:11px; text-transform:uppercase; letter-spacing:.05em;
+                color:var(--muted); margin-bottom:4px; }
+  .fbox { position:relative; border:1.5px solid var(--line-strong); border-radius:8px;
+          height:36px; padding:8px 10px; font-size:14px; overflow:hidden; white-space:nowrap; }
+  .fbox .val { display:inline-block; overflow:hidden; vertical-align:bottom; white-space:nowrap; width:0; }
+  .fbox.file .val::before { content:"📎 "; }
+  /* 14s loop: type, outline green/amber, hold, reset */
+  @keyframes typeval { 0%,4% {width:0} 22%,86% {width:100%} 96%,100% {width:0} }
+  @keyframes stampG { 0%,20% {border-color:var(--line-strong); background:transparent}
+                      26%,86% {border-color:var(--good); background:var(--good-wash)}
+                      96%,100% {border-color:var(--line-strong); background:transparent} }
+  @keyframes stampA { 0%,24% {border-color:var(--line-strong); background:transparent}
+                      30%,86% {border-color:var(--warn); background:var(--warn-wash)}
+                      96%,100% {border-color:var(--line-strong); background:transparent} }
+  .d1 .val { animation: typeval 14s ease-in-out infinite; }
+  .d2 .val { animation: typeval 14s ease-in-out .6s infinite; }
+  .d3 .val { animation: typeval 14s ease-in-out 1.2s infinite; }
+  .d4 .val { animation: typeval 14s steps(1) 1.8s infinite; }
+  .d1 { animation: stampG 14s ease infinite; }
+  .d2 { animation: stampG 14s ease .6s infinite; }
+  .d3 { animation: stampA 14s ease 1.2s infinite; }
+  .d4 { animation: stampG 14s ease 1.8s infinite; }
+  .demo .note { font-size:12px; color:var(--muted); margin-top:10px; }
+  @media (prefers-reduced-motion: reduce) {
+    .fbox .val { width:100% !important; animation:none !important; }
+    .fbox { animation:none !important; border-color: var(--good); background: var(--good-wash); }
+    .d3 { border-color: var(--warn); background: var(--warn-wash); }
+  }
+
+  .trust { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; padding: 8px 0 56px; }
+  @media (max-width: 780px) { .trust { grid-template-columns:repeat(2,1fr); } }
+  .trust .t { background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:18px; }
+  .trust .t b { display:block; font-size:15px; margin-bottom:6px; }
+  .trust .t span { color:var(--muted); font-size:13.5px; }
+
+  section.how { padding: 8px 0 56px; }
+  h2 { font-size:13px; font-weight:650; letter-spacing:.09em; text-transform:uppercase;
+       color:var(--muted); display:flex; align-items:center; gap:10px; margin-bottom:22px; }
+  h2::after { content:""; flex:1; height:1px; background:var(--line); }
+  .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  @media (max-width: 780px) { .steps { grid-template-columns:1fr; } }
+  .step { background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:20px; }
+  .step .mark { width:34px; height:34px; border-radius:9px; background:var(--stamp-wash);
+                color:var(--stamp); display:flex; align-items:center; justify-content:center;
+                font-weight:700; margin-bottom:12px; }
+  .step b { display:block; margin-bottom:6px; font-size:15px; }
+  .step p { color:var(--muted); font-size:13.5px; }
+
+  .boards { display:flex; gap:10px; flex-wrap:wrap; padding-bottom: 64px; }
+  .boards .b { border:1px solid var(--line-strong); border-radius:999px; padding:7px 16px;
+               font-size:13.5px; color:var(--muted); background:var(--card); }
+  .boards .b.hl { color:var(--stamp); border-color:var(--stamp); background:var(--stamp-wash); font-weight:600; }
+
+  footer { border-top:1px solid var(--line); padding:28px 0 48px; display:flex;
+           justify-content:space-between; gap:16px; flex-wrap:wrap; color:var(--muted); font-size:13.5px; }
+  footer a { color:var(--muted); }
+  footer a:hover { color: var(--stamp); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><img src="icon.svg" alt="" />Apply<b>Once</b></div>
+    <nav class="links">
+      <a href="#how">How it works</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="https://github.com/Nyadzayo/ApplyOnce">GitHub</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Apply once.<br /><span class="once">Everywhere.</span></h1>
+      <p class="sub">
+        ApplyOnce fills job applications from a profile stored only on your
+        device — Greenhouse, Lever, Ashby, and thousands of career sites.
+        It never guesses, never auto-submits, and everything has one-click undo.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/Nyadzayo/ApplyOnce#load-in-chrome">Add to Chrome</a>
+        <a class="btn ghost" href="https://github.com/Nyadzayo/ApplyOnce">View the source</a>
+      </div>
+      <p class="fine">Free · No account · Your data never leaves your device</p>
+    </div>
+
+    <div class="demo" aria-label="Animated demonstration of a job application filling itself">
+      <h3>Application form <span class="badge">ApplyOnce · 4 ready</span></h3>
+      <div class="frow"><label>Full name</label>
+        <div class="fbox d1"><span class="val">Jordan Rivera</span></div></div>
+      <div class="frow"><label>Email</label>
+        <div class="fbox d2"><span class="val">jordan.rivera@email.com</span></div></div>
+      <div class="frow"><label>Work authorization</label>
+        <div class="fbox d3"><span class="val">Yes — from your explicit answer</span></div></div>
+      <div class="frow"><label>Resume</label>
+        <div class="fbox file d4"><span class="val">jordan-rivera.pdf</span></div></div>
+      <p class="note">Green = filled &amp; verified · Amber = check me · Submit stays yours</p>
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="t"><b>Never auto-submits</b><span>Every application is reviewed and sent by you. No exceptions, no setting to get wrong.</span></div>
+    <div class="t"><b>One-click undo</b><span>Every fill leaves a receipt. Restore any form to exactly how it was.</span></div>
+    <div class="t"><b>Local by design</b><span>Profile, resume, and history live in your browser. Nothing is transmitted, ever.</span></div>
+    <div class="t"><b>Never guesses</b><span>Unsure fields are flagged for you instead of filled wrong. A blank beats a lie.</span></div>
+  </section>
+
+  <section class="how" id="how">
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step"><div class="mark">1</div><b>Drop your resume</b>
+        <p>Parsed on your device into a profile you review and correct. LinkedIn's "Save to PDF" works too.</p></div>
+      <div class="step"><div class="mark">2</div><b>Open any job posting</b>
+        <p>ApplyOnce recognizes application forms automatically and shows a small badge with what it can fill.</p></div>
+      <div class="step"><div class="mark">3</div><b>Click Fill, then review</b>
+        <p>Green means verified, amber means check me. Your resume attaches itself. You press submit.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Works where you apply</h2>
+    <div class="boards">
+      <span class="b hl">Greenhouse</span>
+      <span class="b hl">Lever</span>
+      <span class="b hl">Ashby</span>
+      <span class="b">Generic career sites</span>
+      <span class="b">Embedded application iframes</span>
+      <span class="b">More boards on the way</span>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 ApplyOnce</span>
+    <span>
+      <a href="privacy.html">Privacy policy</a> ·
+      <a href="https://github.com/Nyadzayo/ApplyOnce/issues/new?template=bug_report.yml">Report a bug</a> ·
+      <a href="https://github.com/Nyadzayo/ApplyOnce">GitHub</a>
+    </span>
+  </footer>
+</div>
+</body>
+</html>

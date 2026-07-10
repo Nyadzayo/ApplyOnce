@@ -4,8 +4,7 @@ import { clearFillLog, exportDiagnostics, listFillLog } from "@storage/filllog";
 
 // Local diagnostics (PLAN.md Phase 8): last 50 fills, structure only.
 
-// change to your public issue tracker before store submission
-const ISSUES_URL = "https://github.com/Nyadzayo/applyonce/issues/new";
+const ISSUES_URL = "https://github.com/Nyadzayo/ApplyOnce/issues/new";
 
 export function DiagnosticsView() {
   const [entries, setEntries] = useState<FillLogEntry[]>([]);
@@ -36,6 +35,8 @@ export function DiagnosticsView() {
       "(paste here)",
       "```",
     ].join("\n");
+    // prefill the plain issue body; the repo's bug_report.yml form is offered
+    // to users who arrive at the tracker directly
     const url = `${ISSUES_URL}?title=${encodeURIComponent("[bug] ")}&body=${encodeURIComponent(body)}`;
     await chrome.tabs.create({ url });
     setNote("Diagnostics copied to clipboard. Paste them into the issue that just opened.");

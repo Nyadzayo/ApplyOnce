@@ -1,0 +1,53 @@
+name: Bug report
+description: A form didn't fill right, the widget misbehaved, or something broke
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. The fastest path to a fix: every bug becomes a
+        test fixture, so the more precisely you describe the page and fields,
+        the faster it lands.
+  - type: input
+    id: page
+    attributes:
+      label: Job page URL (or site name)
+      description: Public posting URL if possible. If private, the job board name (Greenhouse, Lever, Ashby, other).
+      placeholder: https://boards.greenhouse.io/…
+    validations:
+      required: true
+  - type: dropdown
+    id: what
+    attributes:
+      label: What went wrong?
+      options:
+        - A field was filled with the WRONG value
+        - A field was skipped that should have filled
+        - The widget didn't appear
+        - Fill/Undo button did nothing
+        - Resume didn't attach
+        - CV parsing got my profile wrong
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What happened
+      description: Which fields, what you expected, what you got. Screenshots welcome (blur personal data).
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics (optional but very helpful)
+      description: |
+        Side panel → Diagnostics → "Report a bug" copies a structure-only log
+        to your clipboard (no form values, no personal data). Paste it here.
+      render: json
+  - type: input
+    id: version
+    attributes:
+      label: ApplyOnce version + browser
+      placeholder: "0.1.0, Chrome 126 on macOS"
