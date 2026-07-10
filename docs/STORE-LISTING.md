@@ -14,40 +14,44 @@ Productivity (Workflow & Planning) / English
 
 ## Detailed description
 
-Autofill job applications in one click. ApplyOnce reads your resume or CV once, then fills applications on Greenhouse, Lever, Ashby, and thousands of company career sites — name, contact details, links, work history, education, work authorization, and your saved answers to repeated questions. Your resume file attaches itself, too.
+(Complies with CWS Listing Requirements: no keyword repeated more than 5
+times, no brand/keyword lists without purpose, no testimonials, sentence-case
+headers. Recheck counts after any edit.)
 
-YOU STAY IN CONTROL
-• Never auto-submits. You review every application and press submit yourself — there is no auto-apply mode to get wrong.
-• Never guesses. A field ApplyOnce isn't sure about is flagged for you instead of filled wrong. Green means filled and verified, amber means check me.
-• One-click undo. Every fill leaves a receipt; restore any form to exactly how it was.
+Autofill job applications in one click. ApplyOnce reads your resume or CV once, then completes forms on Greenhouse, Lever, Ashby, and thousands of company career sites: name, contact details, links, work history, education, authorization status, and your saved answers to repeated questions. Your resume file attaches itself too.
 
-YOUR DATA NEVER LEAVES YOUR DEVICE
-• No account, no signup, no cloud. Your profile, resume, and history live in your browser's local storage.
-• Nothing is transmitted — no analytics, no telemetry, no tracking. The source code is public on GitHub.
+You stay in control
+• It never submits for you. You review every form and press submit yourself; there is no auto-apply mode to get wrong.
+• It never guesses. An uncertain field is flagged for you instead of answered wrong. Green means verified, amber means check me.
+• One-click undo restores any form to exactly how it was.
+
+Your data never leaves your device
+• No account, no signup, no cloud. Your profile, documents, and history live in your browser's local storage.
+• Nothing is transmitted: no analytics, no telemetry, no tracking. The source code is public on GitHub.
 • Optional passphrase encryption (AES-GCM) for your profile and documents.
-• Sensitive questions (work authorization, sponsorship, EEO, salary) fill only from answers you explicitly set — never inferred.
+• Sensitive questions (work authorization, sponsorship, EEO, salary) are answered only from responses you explicitly set, never inferred.
 
-FILL EVERY KIND OF FIELD
-• Text, dropdowns, radio buttons, checkboxes, multi-selects, date fields, and searchable comboboxes.
-• Country, state, and phone country-code dropdowns resolved intelligently ("South Africa" matches "South Africa (ZA)" or "+27").
-• Resume/CV file upload — the real file, attached automatically.
-• Skills checkbox groups matched against your profile, salary ranges from your set bounds.
+Every kind of field
+• Text boxes, dropdowns, radio buttons, checkboxes, multi-selects, dates, and searchable comboboxes.
+• Country, state, and phone-code menus resolved intelligently ("South Africa" matches "South Africa (ZA)" or "+27").
+• CV upload handled automatically, using your real file.
+• Skills checkbox groups matched to your profile; salary ranges from your set bounds.
 
-REUSE YOUR BEST ANSWERS
-Save an answer once ("Why do you want to work here?") and ApplyOnce fills it whenever the question appears again — even reworded. Templates support {company} and {role}, personalized automatically from the job page.
+Reuse your best answers
+Save a response once ("Why do you want to work here?") and it is reused whenever the question appears again, even reworded. Templates support {company} and {role}, personalized from the page you are on.
 
-BUILT-IN APPLICATION TRACKER
-Every job you scan or fill is tracked: statuses (Saved, Applied, Interviewing, Offer, Rejected), follow-up reminders, a snapshot of the job description that survives after the posting is taken down, search, and CSV export. Replace the spreadsheet.
+Built-in tracker
+Every posting you scan is remembered: statuses (Saved, Applied, Interviewing, Offer, Rejected), follow-up reminders, a snapshot of the job description that survives after the posting closes, search, and CSV export. Replace the spreadsheet.
 
-GETTING STARTED (UNDER 3 MINUTES)
-1. Drop in your resume (PDF or DOCX — LinkedIn's "Save to PDF" works too). It's parsed on your device into a profile you review and correct.
+Getting started takes about three minutes
+1. Drop in your resume (PDF or DOCX; LinkedIn's "Save to PDF" export works too). It is parsed on your device into a profile you review and correct.
 2. Set your explicit answers: work authorization, sponsorship, salary, optional EEO responses.
-3. Open any job posting. ApplyOnce detects the application form and shows a small badge — click Fill, review, submit.
+3. Open any job posting. ApplyOnce detects the form and shows a small badge. Click Fill, review, submit.
 
-HONEST LIMITS
-Multi-page enterprise portals like Workday are not fully supported yet. On unfamiliar forms, unrecognized questions are flagged for you rather than answered — that's by design.
+Honest limits
+Multi-page enterprise portals like Workday are not fully supported yet. Unrecognized questions are flagged for you rather than answered; that is by design.
 
-Free, open source, and local-first. Questions or a form that didn't fill right? Report it on GitHub and it becomes a test case.
+Free, open source, and local-first. If a form does not fill right, report it on GitHub and it becomes a test case.
 
 ## Screenshot captions (1280x800, this order)
 1. One click fills the whole application. Green means verified, amber means check me.
