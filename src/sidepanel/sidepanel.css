@@ -1,0 +1,370 @@
+/* ApplyOnce design system — "ink & stamp".
+   Color is GRADED, not picked: one OKLCH ramp at constant hue 245° (marine
+   blue — the researched trust hue for career/professional tools; deliberately
+   not the 270°+ indigo/violet band), perceptual lightness steps 97%→28%,
+   chroma peaking mid-scale (the Tailwind/Radix/Material method). Neutrals are
+   the same hue at whisper chroma; semantics are separate graded hues
+   (155°/70°/27°). Hexes below are resolved from oklch() by Chromium's color
+   engine — see e2e/resolve-colors.mjs to regenerate.
+   Ramp: 50 #eef6fe 100 #d7ebfc 200 #b4d9fa 300 #86beee 400 #4e9cda
+         500 #0a7fc6 600 #0065ad 700 #00508f 800 #003d6d 900 #002b4b */
+
+:root {
+  --paper: #f8fafc;
+  --card: #ffffff;
+  --ink: #1b252e;
+  --muted: #59656f;
+  --faint: #7d8891;
+  --line: #dfe3e7;
+  --line-strong: #cad0d6;
+  --stamp: #0065ad;
+  --stamp-deep: #00508f;
+  --stamp-wash: #eef6fe;
+  --good: #267b4c;
+  --good-wash: #e2f4e7;
+  --warn: #9a6418;
+  --warn-wash: #f9efda;
+  --bad: #ab413a;
+  --bad-wash: #fdebe9;
+  /* 4px spatial grid + 5-step type scale — every rule below uses these */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 20px; --s6: 24px;
+  --t-xs: 11px; --t-sm: 12px; --t-md: 13px; --t-lg: 15px; --t-xl: 17px;
+  --radius: 10px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 2px rgba(28, 39, 51, 0.06);
+  --font-ui: "Avenir Next", "Seravek", "Segoe UI Variable Text", "Segoe UI",
+    system-ui, sans-serif;
+  --font-data: ui-monospace, "SF Mono", "Cascadia Code", Menlo, monospace;
+  font-size: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0e1318;
+    --card: #161d22;
+    --ink: #e5e8ec;
+    --muted: #88949e;
+    --faint: #68737d;
+    --line: #272f35;
+    --line-strong: #384149;
+    --stamp: #4e9cda;
+    --stamp-deep: #86beee;
+    --stamp-wash: #002b4b;
+    --good: #68b986;
+    --good-wash: #1d2d22;
+    --warn: #d7a459;
+    --warn-wash: #322714;
+    --bad: #e47c72;
+    --bad-wash: #36201d;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  line-height: 1.5;
+  font-size: var(--t-md);
+  -webkit-font-smoothing: antialiased;
+}
+#root { display: flex; flex-direction: column; min-height: 100vh; }
+
+/* ---- brand + tabs ------------------------------------------------------- */
+
+header.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: var(--s4) var(--s4) var(--s2);
+}
+header.brand .mark { width: 22px; height: 22px; flex: none; }
+header.brand .name {
+  font-size: var(--t-lg);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+header.brand .name b { color: var(--stamp); font-weight: 650; }
+
+nav.tabs {
+  display: flex;
+  gap: 2px;
+  padding: 0 10px;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  z-index: 5;
+}
+nav.tabs button {
+  border: none;
+  background: none;
+  color: var(--muted);
+  padding: var(--s2) var(--s3);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--t-md);
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+nav.tabs button:hover { color: var(--ink); }
+nav.tabs button.active {
+  color: var(--stamp);
+  font-weight: 600;
+  border-bottom-color: var(--stamp);
+}
+nav.tabs button:focus-visible {
+  outline: 2px solid var(--stamp);
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+
+main.view { padding: var(--s4) var(--s4) var(--s6); flex: 1; }
+
+/* ---- type scale ---------------------------------------------------------- */
+
+h1 {
+  font-size: var(--t-xl);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+}
+/* section headers styled like printed form captions — the signature move */
+h2 {
+  font-size: var(--t-xs);
+  font-weight: 650;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: var(--s5) 0 var(--s2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+h2 .hint { text-transform: none; letter-spacing: 0; font-weight: 400; }
+
+p.hint { color: var(--muted); margin: var(--s1) 0 var(--s3); font-size: var(--t-sm); }
+
+/* ---- forms ---------------------------------------------------------------- */
+
+.field-row { display: flex; flex-direction: column; gap: var(--s1); margin-bottom: var(--s3); }
+.field-row label {
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+input[type="text"], input[type="email"], input[type="password"], select, textarea {
+  font: inherit;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: var(--s2) var(--s3);
+  width: 100%;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: none;
+  border-color: var(--stamp);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--stamp) 18%, transparent);
+}
+textarea { min-height: 64px; resize: vertical; }
+::placeholder { color: var(--faint); }
+
+/* ---- buttons --------------------------------------------------------------- */
+
+button.primary, button.secondary, button.danger {
+  font: inherit;
+  font-size: var(--t-md);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  min-height: 32px;
+  padding: 6px var(--s3);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.12s ease, border-color 0.12s ease, transform 0.06s ease;
+}
+button.primary { background: var(--stamp); color: #fff; }
+button.primary:hover { background: var(--stamp-deep); }
+button.primary:active { transform: translateY(1px); }
+button.primary:disabled { opacity: 0.45; cursor: default; transform: none; }
+button.secondary {
+  background: var(--card);
+  border-color: var(--line-strong);
+  color: var(--ink);
+  font-weight: 500;
+}
+button.secondary:hover { border-color: var(--faint); }
+button.danger { background: none; border-color: transparent; color: var(--bad); font-weight: 500; }
+button.danger:hover { background: var(--bad-wash); }
+button:focus-visible { outline: 2px solid var(--stamp); outline-offset: 1px; }
+.btn-row { display: flex; gap: var(--s2); margin: var(--s3) 0; flex-wrap: wrap; align-items: center; }
+
+/* ---- cards ------------------------------------------------------------------ */
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--s3);
+  margin-bottom: var(--s2);
+  box-shadow: var(--shadow);
+}
+.card .q { font-weight: 600; font-size: var(--t-md); line-height: 1.4; }
+.card .q a { color: var(--ink); text-decoration: none; }
+.card .q a:hover { color: var(--stamp); text-decoration: underline; }
+.card .meta {
+  color: var(--muted);
+  font-size: var(--t-sm);
+  margin-top: var(--s1);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- stamp chips (state badges) — imprinted, like an inked stamp ---------- */
+
+.badge {
+  display: inline-block;
+  font-size: var(--t-xs);
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 5px;
+  padding: 2px 7px;
+  margin-right: 6px;
+  vertical-align: 1px;
+  border: 1px solid;
+}
+.badge.green { background: var(--good-wash); color: var(--good); border-color: color-mix(in srgb, var(--good) 35%, transparent); }
+.badge.amber { background: var(--warn-wash); color: var(--warn); border-color: color-mix(in srgb, var(--warn) 35%, transparent); }
+.badge.red { background: var(--bad-wash); color: var(--bad); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.badge.grey { background: var(--stamp-wash); color: var(--stamp); border-color: color-mix(in srgb, var(--stamp) 30%, transparent); }
+
+/* ---- summary panel ------------------------------------------------------------ */
+
+.summary {
+  background: var(--stamp-wash);
+  border: 1px solid color-mix(in srgb, var(--stamp) 25%, transparent);
+  border-radius: var(--radius);
+  padding: var(--s3);
+  margin: var(--s3) 0;
+  font-size: var(--t-md);
+  font-variant-numeric: tabular-nums;
+}
+
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 420px) { .split { grid-template-columns: 1fr; } }
+
+.rawtext {
+  font-family: var(--font-data);
+  font-size: 11px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.warn { color: var(--warn); font-size: var(--t-sm); }
+.error { color: var(--bad); font-size: var(--t-sm); }
+.ok { color: var(--good); font-size: var(--t-sm); }
+
+details { margin: 8px 0; }
+summary { cursor: pointer; color: var(--muted); font-size: var(--t-sm); }
+summary:hover { color: var(--ink); }
+
+.drop {
+  border: 1.5px dashed var(--line-strong);
+  border-radius: var(--radius);
+  padding: 28px 16px;
+  text-align: center;
+  color: var(--muted);
+  cursor: pointer;
+  display: block;
+  background: var(--card);
+  transition: border-color 0.12s ease, background 0.12s ease;
+}
+.drop:hover, .drop.active {
+  border-color: var(--stamp);
+  color: var(--stamp);
+  background: var(--stamp-wash);
+}
+
+.inline-edit { display: flex; gap: 6px; margin-top: 6px; }
+.inline-edit input, .inline-edit textarea { flex: 1; }
+
+.checkline { display: flex; align-items: center; gap: var(--s2); font-size: var(--t-sm); margin: var(--s1) 0; flex-wrap: wrap; }
+.checkline input[type="checkbox"] { width: auto; accent-color: var(--stamp); }
+.checkline select { width: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+
+/* ---- chip buttons (status pipeline, compact toggles) ----------------------- */
+
+button.chip {
+  font: inherit;
+  font-size: var(--t-sm);
+  font-weight: 500;
+  border-radius: 999px;
+  padding: 3px var(--s3);
+  min-height: 26px;
+  cursor: pointer;
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  color: var(--muted);
+  transition: border-color 0.12s ease, color 0.12s ease, background 0.12s ease;
+}
+button.chip:hover { border-color: var(--faint); color: var(--ink); }
+button.chip.on {
+  background: var(--stamp-wash);
+  border-color: var(--stamp);
+  color: var(--stamp);
+  font-weight: 600;
+}
+button.chip:focus-visible { outline: 2px solid var(--stamp); outline-offset: 1px; }
+
+/* ---- file-picker styled as a secondary button ------------------------------- */
+
+label.file-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  font-size: var(--t-md);
+  font-weight: 500;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 6px var(--s3);
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.12s ease;
+}
+label.file-btn:hover { border-color: var(--faint); }
+label.file-btn:focus-within { outline: 2px solid var(--stamp); outline-offset: 1px; }
+
+/* ---- pagination --------------------------------------------------------------- */
+
+.pager {
+  display: flex;
+  gap: var(--s2);
+  align-items: center;
+  justify-content: center;
+  margin: var(--s3) 0;
+}
+.pager .count {
+  color: var(--muted);
+  font-size: var(--t-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.select-inline { width: auto; }

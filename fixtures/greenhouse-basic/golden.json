@@ -1,0 +1,21 @@
+{
+  "url": "https://boards.greenhouse.io/acme/jobs/1234567",
+  "fields": [
+    { "selector": "#first_name", "canonical": "basics.firstName", "kind": "text", "required": true },
+    { "selector": "#last_name", "canonical": "basics.lastName", "kind": "text", "required": true },
+    { "selector": "#email", "canonical": "basics.email", "kind": "text", "required": true },
+    { "selector": "#phone", "canonical": "basics.phone", "kind": "text" },
+    { "selector": "#job_application_location", "canonical": "location.full", "kind": "text" },
+    { "selector": "#resume", "canonical": "attachments.resume", "kind": "file", "required": true },
+    { "selector": "#cover_letter", "canonical": "attachments.coverLetter", "kind": "file" },
+    { "selector": "#job_application_answers_attributes_0_text_value", "canonical": "links.linkedin", "kind": "text" },
+    { "selector": "#job_application_answers_attributes_1_boolean_value", "canonical": "preferences.workAuth", "kind": "select" },
+    { "selector": "#job_application_answers_attributes_2_boolean_value", "canonical": "preferences.requiresSponsorship", "kind": "select" },
+    { "selector": "#job_application_answers_attributes_3_text_value", "canonical": "preferences.salary", "kind": "text" },
+    { "selector": "#job_application_gender", "canonical": "eeo.gender", "kind": "select" },
+    { "selector": "#job_application_hispanic_ethnicity", "canonical": "eeo.hispanic", "kind": "select" },
+    { "selector": "#job_application_veteran_status", "canonical": "eeo.veteran", "kind": "select" },
+    { "selector": "#job_application_disability_status", "canonical": "eeo.disability", "kind": "select" }
+  ],
+  "expectNoFill": []
+}

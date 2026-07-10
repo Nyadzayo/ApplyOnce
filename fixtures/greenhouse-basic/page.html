@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head><title>Software Engineer — Acme (Greenhouse)</title></head>
+<body>
+<div id="application">
+  <h2>Apply for this job</h2>
+  <form id="application_form" action="#" method="post">
+    <div class="field">
+      <label for="first_name">First Name *</label>
+      <input type="text" id="first_name" name="job_application[first_name]" required />
+    </div>
+    <div class="field">
+      <label for="last_name">Last Name *</label>
+      <input type="text" id="last_name" name="job_application[last_name]" required />
+    </div>
+    <div class="field">
+      <label for="email">Email *</label>
+      <input type="text" id="email" name="job_application[email]" required />
+    </div>
+    <div class="field">
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" name="job_application[phone]" />
+    </div>
+    <div class="field">
+      <label for="job_application_location">Location (City)</label>
+      <input type="text" id="job_application_location" name="job_application[location]" />
+    </div>
+    <div class="field">
+      <label for="resume">Resume/CV *</label>
+      <input type="file" id="resume" name="job_application[resume]" accept=".pdf,.doc,.docx,.txt,.rtf" />
+    </div>
+    <div class="field">
+      <label for="cover_letter">Cover Letter</label>
+      <input type="file" id="cover_letter" name="job_application[cover_letter]" accept=".pdf,.doc,.docx,.txt,.rtf" />
+    </div>
+
+    <h3>Application questions</h3>
+    <div class="field">
+      <label for="job_application_answers_attributes_0_text_value">LinkedIn Profile</label>
+      <input type="text" id="job_application_answers_attributes_0_text_value"
+             name="job_application[answers_attributes][0][text_value]" />
+    </div>
+    <div class="field">
+      <label for="job_application_answers_attributes_1_boolean_value">Are you legally authorized to work in the United States? *</label>
+      <select id="job_application_answers_attributes_1_boolean_value"
+              name="job_application[answers_attributes][1][boolean_value]">
+        <option value=""></option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="job_application_answers_attributes_2_boolean_value">Will you now or in the future require sponsorship for employment visa status? *</label>
+      <select id="job_application_answers_attributes_2_boolean_value"
+              name="job_application[answers_attributes][2][boolean_value]">
+        <option value=""></option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="job_application_answers_attributes_3_text_value">What are your salary expectations?</label>
+      <input type="text" id="job_application_answers_attributes_3_text_value"
+             name="job_application[answers_attributes][3][text_value]" />
+    </div>
+
+    <h3>U.S. Equal Employment Opportunity information</h3>
+    <div class="field">
+      <label for="job_application_gender">Gender</label>
+      <select id="job_application_gender" name="job_application[gender]">
+        <option value=""></option>
+        <option value="1">Male</option>
+        <option value="2">Female</option>
+        <option value="3">Decline To Self Identify</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="job_application_hispanic_ethnicity">Are you Hispanic/Latino?</label>
+      <select id="job_application_hispanic_ethnicity" name="job_application[hispanic_ethnicity]">
+        <option value=""></option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="Decline To Self Identify">Decline To Self Identify</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="job_application_veteran_status">Veteran Status</label>
+      <select id="job_application_veteran_status" name="job_application[veteran_status]">
+        <option value=""></option>
+        <option value="I am not a protected veteran">I am not a protected veteran</option>
+        <option value="I identify as one or more of the classifications of a protected veteran">I identify as one or more of the classifications of a protected veteran</option>
+        <option value="I don't wish to answer">I don't wish to answer</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="job_application_disability_status">Disability Status</label>
+      <select id="job_application_disability_status" name="job_application[disability_status]">
+        <option value=""></option>
+        <option value="Yes, I have a disability (or previously had a disability)">Yes, I have a disability (or previously had a disability)</option>
+        <option value="No, I do not have a disability">No, I do not have a disability</option>
+        <option value="I don't wish to answer">I don't wish to answer</option>
+      </select>
+    </div>
+    <input type="submit" value="Submit Application" />
+  </form>
+</div>
+</body>
+</html>

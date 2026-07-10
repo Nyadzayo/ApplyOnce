@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head><title>Careers — Apply — Acme Corp</title></head>
+<body>
+<main>
+  <h1>Apply: Operations Analyst</h1>
+  <form action="#" method="post">
+    <h2>About you</h2>
+    <div class="row">
+      <label for="fname">First name *</label>
+      <input id="fname" autocomplete="given-name" required />
+    </div>
+    <div class="row">
+      <label for="lname">Last name *</label>
+      <input id="lname" autocomplete="family-name" required />
+    </div>
+    <div class="row">
+      <label for="mail">Work email *</label>
+      <input id="mail" type="email" autocomplete="email" required />
+    </div>
+    <div class="row">
+      <label for="tel">Mobile</label>
+      <input id="tel" type="tel" autocomplete="tel" />
+    </div>
+    <div class="row">
+      <label for="city">City</label>
+      <input id="city" autocomplete="address-level2" />
+    </div>
+    <div class="row">
+      <label for="country">Country</label>
+      <select id="country" autocomplete="country-name">
+        <option value="">Choose a country</option>
+        <option value="DE">Germany</option>
+        <option value="GB">United Kingdom</option>
+        <option value="US">United States of America</option>
+      </select>
+    </div>
+
+    <h2>Your background</h2>
+    <div class="row">
+      <label for="company">Current employer</label>
+      <input id="company" />
+    </div>
+    <div class="row">
+      <label for="title">Job title</label>
+      <input id="title" />
+    </div>
+    <div class="row">
+      <label for="degree">Highest level of education</label>
+      <select id="degree">
+        <option value="">Select one</option>
+        <option value="hs">High school diploma</option>
+        <option value="ba">Bachelor's degree</option>
+        <option value="ma">Master's degree</option>
+        <option value="phd">Doctorate</option>
+      </select>
+    </div>
+
+    <h2>Eligibility</h2>
+    <fieldset>
+      <legend>Are you legally authorized to work in the United Kingdom? *</legend>
+      <label><input type="radio" name="workauth" value="yes" /> Yes</label>
+      <label><input type="radio" name="workauth" value="no" /> No</label>
+    </fieldset>
+    <fieldset>
+      <legend>Will you require sponsorship to work in the UK?</legend>
+      <label><input type="radio" name="sponsor" value="yes" /> Yes</label>
+      <label><input type="radio" name="sponsor" value="no" /> No</label>
+    </fieldset>
+
+    <h2>Final questions</h2>
+    <div class="row">
+      <label for="whyus">Why do you want to work here?</label>
+      <textarea id="whyus" maxlength="2000"></textarea>
+    </div>
+    <div class="row">
+      <label for="dino">What's your favorite dinosaur and why?</label>
+      <textarea id="dino"></textarea>
+    </div>
+    <div class="row">
+      <label for="cv">Upload your CV (PDF only)</label>
+      <input id="cv" type="file" accept=".pdf" />
+    </div>
+    <div class="row">
+      <label>
+        <input type="checkbox" id="consent" />
+        I agree to the terms and conditions and the privacy policy *
+      </label>
+    </div>
+    <button type="submit">Send application</button>
+  </form>
+</main>
+</body>
+</html>

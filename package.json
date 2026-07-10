@@ -1,0 +1,35 @@
+{
+  "name": "applyonce",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Fills job application forms with the user's locally stored profile.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && vite build --config vite.content.config.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --exclude 'evals/**'",
+    "test:watch": "vitest --exclude 'evals/**'",
+    "eval": "vitest run evals/"
+  },
+  "dependencies": {
+    "dexie": "^4.0.11",
+    "mammoth": "^1.9.0",
+    "pdfjs-dist": "^5.3.31",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "zod": "^3.25.67"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.326",
+    "@types/node": "^26.1.1",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.5.2",
+    "jsdom": "^26.1.0",
+    "playwright": "^1.61.1",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^3.2.4"
+  }
+}

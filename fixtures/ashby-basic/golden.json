@@ -1,0 +1,13 @@
+{
+  "url": "https://jobs.ashbyhq.com/acme/00000000-0000-0000-0000-000000000000/application",
+  "fields": [
+    { "selector": "#_systemfield_name", "canonical": "basics.fullName", "kind": "text", "required": true },
+    { "selector": "#_systemfield_email", "canonical": "basics.email", "kind": "text", "required": true },
+    { "selector": "#_systemfield_phone", "canonical": "basics.phone", "kind": "text" },
+    { "selector": "#_systemfield_location", "canonical": "location.full", "kind": "aria_combobox" },
+    { "selector": "#_systemfield_resume", "canonical": "attachments.resume", "kind": "file" },
+    { "selector": "#f9e8d7c6", "canonical": "preferences.requiresSponsorship", "kind": "aria_combobox" },
+    { "selector": "#a1b2c3d4", "canonical": "preferences.noticePeriod", "kind": "text" }
+  ],
+  "expectNoFill": []
+}

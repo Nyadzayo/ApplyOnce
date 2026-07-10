@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head><title>Platform Engineer at Initech</title></head>
+<body>
+<main>
+  <h1>Apply: Platform Engineer</h1>
+  <form action="#" method="post">
+    <div class="row">
+      <label for="em2">Email *</label>
+      <input id="em2" type="email" autocomplete="email" required />
+    </div>
+
+    <h2>Your skills</h2>
+    <fieldset>
+      <legend>Which of the following skills do you have?</legend>
+      <label><input type="checkbox" name="skills[]" value="ts" /> TypeScript</label>
+      <label><input type="checkbox" name="skills[]" value="rust" /> Rust</label>
+      <label><input type="checkbox" name="skills[]" value="go" /> Go</label>
+      <label><input type="checkbox" name="skills[]" value="py" /> Python</label>
+    </fieldset>
+    <div class="row">
+      <label for="techs">Technologies</label>
+      <select id="techs" multiple size="4">
+        <option value="typescript">TypeScript</option>
+        <option value="rust">Rust</option>
+        <option value="java">Java</option>
+        <option value="kotlin">Kotlin</option>
+      </select>
+    </div>
+
+    <h2>Compensation</h2>
+    <div class="row">
+      <label for="smin">Minimum salary (USD)</label>
+      <input id="smin" type="number" min="0" />
+    </div>
+    <div class="row">
+      <label for="smax">Maximum salary (USD)</label>
+      <input id="smax" type="number" min="0" />
+    </div>
+
+    <div class="row">
+      <label>
+        <input type="checkbox" id="agree2" />
+        I certify that my answers are true *
+      </label>
+    </div>
+    <button type="submit">Apply</button>
+  </form>
+</main>
+</body>
+</html>

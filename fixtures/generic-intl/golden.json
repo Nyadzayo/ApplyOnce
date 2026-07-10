@@ -1,0 +1,18 @@
+{
+  "url": "https://careers.globex.example/jobs/data-analyst/apply",
+  "fields": [
+    { "selector": "#fn", "canonical": "basics.firstName", "kind": "text", "required": true },
+    { "selector": "#ln", "canonical": "basics.lastName", "kind": "text", "required": true },
+    { "selector": "#em", "canonical": "basics.email", "kind": "email", "required": true },
+    { "selector": "#cc", "canonical": "basics.phoneCountryCode", "kind": "select" },
+    { "selector": "#ph", "canonical": "basics.phone", "kind": "tel" },
+    { "selector": "#al1", "canonical": "location.street", "kind": "text" },
+    { "selector": "#ct", "canonical": "location.city", "kind": "text" },
+    { "selector": "#st", "canonical": "location.region", "kind": "text" },
+    { "selector": "#pc", "canonical": "location.postalCode", "kind": "text" },
+    { "selector": "#cn", "canonical": "location.country", "kind": "select" },
+    { "selector": "#wa", "canonical": "preferences.workAuth", "kind": "select" },
+    { "selector": "#cv2", "canonical": "attachments.resume", "kind": "file" }
+  ],
+  "expectNoFill": []
+}

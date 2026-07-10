@@ -1,0 +1,18 @@
+{
+  "url": "https://jobs.lever.co/acme/0aa00a00-0000-4a0a-a0a0-000000000000/apply",
+  "fields": [
+    { "selector": "#resume-upload-input", "canonical": "attachments.resume", "kind": "file" },
+    { "selector": "input[name=\"name\"]", "canonical": "basics.fullName", "kind": "text", "required": true },
+    { "selector": "input[name=\"email\"]", "canonical": "basics.email", "kind": "email", "required": true },
+    { "selector": "input[name=\"phone\"]", "canonical": "basics.phone", "kind": "text" },
+    { "selector": "input[name=\"location\"]", "canonical": "location.full", "kind": "text" },
+    { "selector": "input[name=\"org\"]", "canonical": "work.company", "kind": "text" },
+    { "selector": "input[name=\"urls[LinkedIn]\"]", "canonical": "links.linkedin", "kind": "text" },
+    { "selector": "input[name=\"urls[GitHub]\"]", "canonical": "links.github", "kind": "text" },
+    { "selector": "input[name=\"urls[Portfolio]\"]", "canonical": "links.portfolio", "kind": "text" },
+    { "selector": "textarea[name=\"cards[abc123][field0]\"]", "canonical": "custom.why do you want to work here", "kind": "textarea", "viaSavedAnswer": true },
+    { "selector": "select[name=\"eeo[gender]\"]", "canonical": "eeo.gender", "kind": "select" },
+    { "selector": "select[name=\"eeo[race]\"]", "canonical": "eeo.race", "kind": "select" }
+  ],
+  "expectNoFill": []
+}

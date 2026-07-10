@@ -1,0 +1,19 @@
+{
+  "url": "https://careers.acme-corp.example/apply/operations-analyst",
+  "fields": [
+    { "selector": "#fname", "canonical": "basics.firstName", "kind": "text", "required": true },
+    { "selector": "#lname", "canonical": "basics.lastName", "kind": "text", "required": true },
+    { "selector": "#mail", "canonical": "basics.email", "kind": "email", "required": true },
+    { "selector": "#tel", "canonical": "basics.phone", "kind": "tel" },
+    { "selector": "#city", "canonical": "location.city", "kind": "text" },
+    { "selector": "#country", "canonical": "location.country", "kind": "select" },
+    { "selector": "#company", "canonical": "work.company", "kind": "text" },
+    { "selector": "#title", "canonical": "work.title", "kind": "text" },
+    { "selector": "#degree", "canonical": "education.degree", "kind": "select" },
+    { "selector": "input[name=\"workauth\"]", "canonical": "preferences.workAuth", "kind": "radio_group" },
+    { "selector": "input[name=\"sponsor\"]", "canonical": "preferences.requiresSponsorship", "kind": "radio_group" },
+    { "selector": "#whyus", "canonical": "custom.why do you want to work here", "kind": "textarea", "viaSavedAnswer": true },
+    { "selector": "#cv", "canonical": "attachments.resume", "kind": "file" }
+  ],
+  "expectNoFill": ["#consent", "#dino"]
+}

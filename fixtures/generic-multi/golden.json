@@ -1,0 +1,11 @@
+{
+  "url": "https://careers.initech.example/platform-engineer/apply",
+  "fields": [
+    { "selector": "#em2", "canonical": "basics.email", "kind": "email", "required": true },
+    { "selector": "input[name=\"skills[]\"]", "canonical": "skills.list", "kind": "multiselect" },
+    { "selector": "#techs", "canonical": "skills.list", "kind": "multiselect" },
+    { "selector": "#smin", "canonical": "preferences.salaryMin", "kind": "number" },
+    { "selector": "#smax", "canonical": "preferences.salaryMax", "kind": "number" }
+  ],
+  "expectNoFill": ["#agree2"]
+}
