@@ -60,8 +60,13 @@ Free, open source, local-first job application autofill. If a form does not fill
 4. Track every application: statuses, follow-up reminders, CSV export.
 5. No account. No cloud. Your profile lives on your device.
 
-## Assets
-media/out/: PromoTile 1280x800 · SmallTile 440x280 · Marquee 1440x680
+## Assets (media/out/ — dimensions in filenames, verified against CWS spec)
+- screenshot-1-1280x800.png       (screenshot slot; 1280x800 required)
+- small-promo-tile-440x280.png    (small promo tile; 440x280 required)
+- marquee-promo-tile-1400x560.png (marquee; 1400x560 required — NOT 1440x680)
+- social-square-1080x1080.png     (social, not for the store dashboard)
+- social-og-card-1200x630.png     (OpenGraph/Twitter, not for the store dashboard)
+All RGB PNG, no alpha. Store icon comes from the ZIP (icons/icon128.png).
 Homepage: https://nyadzayo.github.io/ApplyOnce/
 Support: https://github.com/Nyadzayo/ApplyOnce/issues
 

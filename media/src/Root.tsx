@@ -18,7 +18,7 @@ export const RemotionRoot: React.FC = () => {
       {/* Chrome Web Store assets */}
       <Still id="PromoTile" component={PromoTile} width={1280} height={800} />
       <Still id="SmallTile" component={SmallTile} width={440} height={280} />
-      <Still id="Marquee" component={Marquee} width={1440} height={680} />
+      <Still id="Marquee" component={Marquee} width={1400} height={560} />
       {/* Social */}
       <Still id="SquareCard" component={SquareCard} width={1080} height={1080} />
       <Still id="OgCard" component={OgCard} width={1200} height={630} />

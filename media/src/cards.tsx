@@ -84,22 +84,21 @@ export const SmallTile: React.FC = () => (
   </Base>
 );
 
-/** CWS marquee — 1440×680 */
+/** CWS marquee — 1400×560 (exact dashboard requirement) */
 export const Marquee: React.FC = () => (
   <Base center={false}>
-    <div style={{ display: "flex", alignItems: "center", height: "100%", padding: "0 100px", gap: 90 }}>
-      <div style={{ display: "flex", flexDirection: "column", gap: 28, flex: 1 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
-          <Stamp size={84} />
-          <Wordmark size={76} />
+    <div style={{ display: "flex", alignItems: "center", height: "100%", padding: "0 90px", gap: 80 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 22, flex: 1 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          <Stamp size={72} />
+          <Wordmark size={66} />
         </div>
-        <div style={{ fontSize: 52, color: C.ink, fontWeight: 700, lineHeight: 1.18, letterSpacing: "-0.01em" }}>
-          Apply once.<br />
-          <span style={{ color: C.stamp }}>Everywhere.</span>
+        <div style={{ fontSize: 46, color: C.ink, fontWeight: 700, lineHeight: 1.16, letterSpacing: "-0.01em" }}>
+          Apply once. <span style={{ color: C.stamp }}>Everywhere.</span>
         </div>
-        <TrustLine size={26} />
+        <TrustLine size={23} />
       </div>
-      <MiniForm scale={0.94} />
+      <MiniForm scale={0.72} />
     </div>
   </Base>
 );
