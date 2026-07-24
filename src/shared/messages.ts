@@ -139,6 +139,17 @@ export const Msg = z.discriminatedUnion("kind", [
   // panel → SW: settings changed — re-sync auto-detect registrations
   z.object({ kind: z.literal("SETTINGS_CHANGED") }),
 
+  // panel/content → SW: anonymous usage event. The SW re-sanitizes against
+  // the telemetry allowlist (shared/telemetry-schema.ts); unknown events and
+  // params are dropped there, so this stays a loose envelope by design.
+  z.object({
+    kind: z.literal("TELEMETRY_EVENT"),
+    event: z.string(),
+    params: z.record(z.union([z.string(), z.number(), z.boolean()])).default({}),
+    /** dedupe as a once-per-install milestone */
+    once: z.boolean().optional(),
+  }),
+
   z.object({ kind: z.literal("PING") }),
   z.object({ kind: z.literal("PONG") }),
 ]);

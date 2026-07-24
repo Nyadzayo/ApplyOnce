@@ -4,7 +4,16 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Privacy policy — ApplyOnce</title>
-<meta name="description" content="ApplyOnce privacy policy: everything is stored locally on your device. Nothing is transmitted. No analytics, no accounts, no telemetry." />
+<meta name="description" content="ApplyOnce privacy policy: your profile, documents and answers stay on your device. Optional anonymous usage statistics — never form values, resume content, or page addresses." />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FHNS7THGZT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FHNS7THGZT');
+</script>
 <link rel="icon" type="image/svg+xml" href="icon.svg" />
 <style>
   :root {
@@ -46,12 +55,14 @@
   </header>
 
   <h1>Privacy policy</h1>
-  <p class="date">Effective July 10, 2026 · Applies to the ApplyOnce browser extension</p>
+  <p class="date">Effective July 10, 2026 · Updated July 24, 2026 · Applies to the ApplyOnce browser extension</p>
 
   <div class="callout">
-    The short version: everything ApplyOnce knows lives in your browser on
-    your device. Nothing is transmitted to us or anyone else. There are no
-    accounts, no analytics, and no telemetry.
+    The short version: everything ApplyOnce knows about <em>you</em> — your
+    profile, documents, answers, and history — lives in your browser on your
+    device and is never transmitted. The extension sends only anonymous usage
+    statistics (which features run and whether they succeed), and you can turn
+    even that off in Settings. There are no accounts.
   </div>
 
   <h2>What ApplyOnce stores, and where</h2>
@@ -76,10 +87,27 @@
      description of both modes.</p>
 
   <h2>What is transmitted</h2>
-  <p><strong>Nothing.</strong> ApplyOnce makes no network requests. It has no
-     backend, no analytics SDK, no crash reporter, and no account system. The
-     only network activity involving the extension is your browser downloading
-     it from the store.</p>
+  <p><strong>Anonymous usage statistics only — and you can turn them off.</strong>
+     The extension reports feature-usage events to Google Analytics under a
+     random identifier so we can see what's working: things like "a fill
+     completed on a Greenhouse form: 24 fields, 20 filled, 3 held for review,
+     took 4 seconds" or "resume import failed: PDF". Every event is checked
+     against a strict allowlist before it leaves your device. The following are
+     <em>never</em> sent, on any event:</p>
+  <ul>
+    <li>Form values, or anything you filled or typed</li>
+    <li>Your profile, resume/document contents, or saved answers</li>
+    <li>Page addresses, hostnames, page titles, company names, or question text
+        (the only site-shaped signal is the job platform's name, e.g.
+        "greenhouse" or "lever")</li>
+  </ul>
+  <p>Events carry your browser language and timezone (rough region — never
+     precise location; the extension sends no IP-based geolocation data).
+     Opt out any time in the side panel under Settings → Privacy; the switch
+     takes effect immediately. There is still no backend, no crash reporter,
+     and no account system.</p>
+  <p>This website (applyonce pages you're reading now) uses standard Google
+     Analytics page measurement, separate from the extension.</p>
 
   <h2>Why it asks to read websites</h2>
   <p>ApplyOnce needs access to the pages you visit so it can detect job

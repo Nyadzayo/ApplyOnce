@@ -4,13 +4,37 @@ import { computeDecisions, prepareFiles } from "./mapping";
 import { appendFillLog } from "@storage/filllog";
 import { getJob, setStatusByUrl, upsertJob } from "@storage/history";
 import { parseJobPageTitle } from "@shared/page-context";
+import {
+  HEARTBEAT_ALARM,
+  getHoursSinceInstall,
+  installGlobalErrorHandlers,
+  markInstalledAt,
+  sendHeartbeat,
+  trackError,
+  trackEvent,
+  trackOnce,
+} from "./telemetry";
+
+installGlobalErrorHandlers("sw");
 
 // Stateless orchestrator (PLAN.md Part 1): message routing, job ids,
 // content-script injection, offscreen lifecycle. No long-lived state here —
 // the worker may be killed at any time.
 
-chrome.runtime.onInstalled.addListener(() => {
+chrome.runtime.onInstalled.addListener((details) => {
   void chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
+  void chrome.alarms?.create(HEARTBEAT_ALARM, {
+    periodInMinutes: 60 * 24,
+    delayInMinutes: 5,
+  });
+  const version = chrome.runtime.getManifest().version;
+  if (details.reason === "install") {
+    void markInstalledAt().then(() =>
+      trackEvent("extension_installed", { version }),
+    );
+  } else if (details.reason === "update") {
+    void trackEvent("extension_updated", { version });
+  }
 });
 
 // ---------------------------------------------------------------------------
@@ -20,6 +44,10 @@ chrome.runtime.onInstalled.addListener(() => {
 const REMIND_PREFIX = "fa.remind.";
 
 chrome.alarms?.onAlarm.addListener((alarm) => {
+  if (alarm.name === HEARTBEAT_ALARM) {
+    void sendHeartbeat();
+    return;
+  }
   if (!alarm.name.startsWith(REMIND_PREFIX)) return;
   void (async () => {
     const job = await getJob(alarm.name.slice(REMIND_PREFIX.length));
@@ -31,13 +59,17 @@ chrome.alarms?.onAlarm.addListener((alarm) => {
       message: `${job.title || job.domain}. You planned to follow up on this application today.`,
       priority: 1,
     });
+    void trackEvent("followup_notification_sent", {});
   })();
 });
 
 chrome.notifications?.onClicked.addListener((notificationId) => {
   void (async () => {
     const job = await getJob(notificationId);
-    if (job) void chrome.tabs.create({ url: job.url });
+    if (job) {
+      void chrome.tabs.create({ url: job.url });
+      void trackEvent("followup_notification_clicked", {});
+    }
     chrome.notifications.clear(notificationId);
   })();
 });
@@ -49,6 +81,7 @@ chrome.commands?.onCommand.addListener((command) => {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     if (tab?.id !== undefined) {
       chrome.tabs.sendMessage(tab.id, { kind: "SHORTCUT_FILL" } satisfies Msg).catch(() => {});
+      void trackEvent("shortcut_used", { command });
     }
   })();
 });
@@ -97,6 +130,7 @@ async function startScan(tabId: number): Promise<void> {
     }
     await updateJob(job.id, { state: "failed", error });
     void chrome.runtime.sendMessage({ kind: "JOB_FAILED", jobId: job.id, error } satisfies Msg);
+    void trackError("scan", e);
   }
 }
 
@@ -114,6 +148,7 @@ async function startFill(
   } catch (e) {
     const error = e instanceof Error ? e.message : String(e);
     void chrome.runtime.sendMessage({ kind: "JOB_FAILED", jobId, error } satisfies Msg);
+    void trackError("fill", e);
   }
 }
 
@@ -213,6 +248,13 @@ chrome.runtime.onMessage.addListener((raw, _sender, sendResponse) => {
           );
           if (result.enabled && msg.framePath === "top") {
             await upsertJob(msg.url, msg.ats, msg.title, undefined, msg.jdText);
+            void trackEvent("application_page_detected", { ats: msg.ats });
+            void getHoursSinceInstall().then((h) =>
+              trackOnce("first_application_detected", {
+                ats: msg.ats,
+                ...(h === null ? {} : { hours_since_install: h }),
+              }),
+            );
           }
           sendResponse(result);
         } catch {
@@ -248,6 +290,22 @@ chrome.runtime.onMessage.addListener((raw, _sender, sendResponse) => {
           durationMs: msg.durationMs,
           outcomes: [],
         });
+        void trackEvent("fill_completed", {
+          ats: msg.ats,
+          via: "widget",
+          field_count: msg.fieldCount,
+          filled: msg.filled,
+          reviewed: msg.reviewed,
+          abstained: msg.abstained,
+          failed: msg.failed,
+          duration_ms: msg.durationMs,
+        });
+        void getHoursSinceInstall().then((h) =>
+          trackOnce("first_fill_completed", {
+            ats: msg.ats,
+            ...(h === null ? {} : { hours_since_install: h }),
+          }),
+        );
       })();
       return false;
     }
@@ -263,7 +321,26 @@ chrome.runtime.onMessage.addListener((raw, _sender, sendResponse) => {
       void (async () => {
         await upsertJob(msg.url, msg.ats, msg.title);
         await setStatusByUrl(msg.url, "applied");
+        void trackEvent("application_marked_applied", { ats: msg.ats });
+        void getHoursSinceInstall().then((h) =>
+          trackOnce("first_application_marked", {
+            ...(h === null ? {} : { hours_since_install: h }),
+          }),
+        );
       })();
+      return false;
+    }
+    case "TELEMETRY_EVENT": {
+      // sanitizeParams in trackEvent re-validates against the allowlist;
+      // unknown events/params from any surface are dropped there. Errors go
+      // through trackError so forwarded crashes share its daily rate limit.
+      if (msg.event === "extension_error") {
+        void trackError(String(msg.params.context ?? "panel"), msg.params.message);
+      } else if (msg.once) {
+        void trackOnce(msg.event, msg.params);
+      } else {
+        void trackEvent(msg.event, msg.params);
+      }
       return false;
     }
     case "SETTINGS_CHANGED": {

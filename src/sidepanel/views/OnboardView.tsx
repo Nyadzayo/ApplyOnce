@@ -4,7 +4,14 @@ import { b64encode, parseMsg } from "@shared/messages";
 import { saveDocument } from "@storage/vault";
 import { parseCvText } from "@shared/cvparse";
 import type { VaultHook } from "../App";
+import { track } from "../telemetry";
 import { ExplicitSettingsForm, ProfileForm } from "./ProfileForm";
+
+function importMethod(fileName: string, mime: string): string {
+  if (mime.includes("pdf") || /\.pdf$/i.test(fileName)) return "file_pdf";
+  if (mime.includes("word") || /\.docx$/i.test(fileName)) return "file_docx";
+  return "file_txt";
+}
 
 // Onboarding (PLAN.md Phase 6): drop resume → parse → side-by-side review →
 // explicit-settings step → done. Target < 3 minutes to first fill.
@@ -24,6 +31,11 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
   const fileRef = useRef<{ name: string; mime: string; data: ArrayBuffer } | null>(null);
   const jobRef = useRef<string | null>(null);
   const watchdogRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const methodRef = useRef("manual");
+
+  useEffect(() => {
+    track("onboarding_started", { surface: "panel" }, true);
+  }, []);
 
   useEffect(() => {
     const listener = (raw: unknown) => {
@@ -33,8 +45,16 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
       setBusy(false);
       if (!msg.ok || !msg.patch) {
         setError(msg.error ?? "Couldn't parse that file.");
+        track("resume_import_failed", {
+          method: methodRef.current,
+          reason: msg.error ?? "unknown",
+        });
         return;
       }
+      track("resume_imported", {
+        method: methodRef.current,
+        warnings: msg.patch.warnings.length,
+      });
       setPatch(msg.patch);
       setRawText(msg.rawText ?? "");
       setDraft(msg.patch.profile);
@@ -50,6 +70,8 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
     try {
       const data = await file.arrayBuffer();
       fileRef.current = { name: file.name, mime: file.type, data };
+      methodRef.current = importMethod(file.name, file.type);
+      track("resume_import_started", { method: methodRef.current });
       const jobId = crypto.randomUUID();
       jobRef.current = jobId;
       watchdogRef.current = setTimeout(() => {
@@ -78,7 +100,10 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
   }
 
   function handlePaste() {
+    methodRef.current = "paste";
+    track("resume_import_started", { method: "paste" });
     const p = parseCvText(pasted);
+    track("resume_imported", { method: "paste", warnings: p.warnings.length });
     setPatch(p);
     setRawText(pasted);
     setDraft(p.profile);
@@ -97,6 +122,20 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
   async function finishExplicit() {
     if (draft) await vault.persistProfile(draft);
     await vault.refresh();
+    try {
+      const stored = await chrome.storage.local.get("fa.telemetry.installedAt");
+      const at = stored["fa.telemetry.installedAt"] as number | undefined;
+      track(
+        "onboarding_completed",
+        {
+          method: methodRef.current,
+          ...(at ? { hours_since_install: Math.round(((Date.now() - at) / 36e5) * 10) / 10 } : {}),
+        },
+        true,
+      );
+    } catch {
+      track("onboarding_completed", { method: methodRef.current }, true);
+    }
     onDone();
   }
 
@@ -140,7 +179,7 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
               <button className="secondary" onClick={() => setPasteMode(true)}>
                 Paste text instead
               </button>
-              <button className="secondary" onClick={() => { setDraft(vault.profile); setPatch({ profile: vault.profile!, evidence: {}, warnings: [] }); setStep("review"); }}>
+              <button className="secondary" onClick={() => { methodRef.current = "manual"; track("resume_import_started", { method: "manual" }); setDraft(vault.profile); setPatch({ profile: vault.profile!, evidence: {}, warnings: [] }); setStep("review"); }}>
                 Skip, type it in manually
               </button>
             </div>

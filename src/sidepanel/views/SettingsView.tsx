@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { VaultHook } from "../App";
+import { getTelemetryEnabled, setTelemetryEnabled, track } from "../telemetry";
 import {
   exportVault,
   importVault,
@@ -21,6 +22,10 @@ export function SettingsView({ vault }: { vault: VaultHook }) {
   const [pass, setPass] = useState("");
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<string | null>(null);
+  const [telemetry, setTelemetry] = useState(true);
+  useEffect(() => {
+    void getTelemetryEnabled().then(setTelemetry);
+  }, []);
   const s = vault.settings;
   if (!s) return null;
 
@@ -84,6 +89,23 @@ export function SettingsView({ vault }: { vault: VaultHook }) {
         plain IndexedDB, protected by your OS user account. That's the honest
         description, not marketing.
       </p>
+      <div className="checkline">
+        <input
+          type="checkbox"
+          id="telemetry"
+          checked={telemetry}
+          onChange={async (e) => {
+            const on = e.target.checked;
+            setTelemetry(on);
+            await setTelemetryEnabled(on);
+          }}
+        />
+        <label htmlFor="telemetry">
+          Share anonymous usage statistics (event counts and which job platform
+          a fill ran on — never form values, resume content, or page addresses;
+          see the privacy policy)
+        </label>
+      </div>
       {!s.passphraseEnabled ? (
         <div className="card">
           <div className="q">Enable passphrase encryption</div>
@@ -127,6 +149,7 @@ export function SettingsView({ vault }: { vault: VaultHook }) {
           onChange={async (e) => {
             await saveSettings({ autoDetect: e.target.checked });
             await chrome.runtime.sendMessage({ kind: "SETTINGS_CHANGED" });
+            track("settings_changed", { field: `auto_detect_${e.target.checked ? "on" : "off"}` });
             await vault.refresh();
           }}
         />

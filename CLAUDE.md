@@ -16,8 +16,11 @@ update PLAN.md in the same change and say why.**
 
 1. **Never implement auto-submit.** The extension never clicks submit buttons
    or programmatically submits forms. The code path must not exist.
-2. **No LLM, no embeddings, no network calls in v1.** Nothing is transmitted
-   anywhere. The only remote interaction is Chrome loading the extension.
+2. **No LLM, no embeddings, no product network calls in v1.** User data is
+   never transmitted anywhere. The single exception (owner decision,
+   2026-07-24) is anonymous usage telemetry: allowlisted GA4 Measurement
+   Protocol events sent from the service worker only — see
+   `src/shared/telemetry-schema.ts` and rule 9.
 3. **Precision beats recall.** Every wrong silent fill costs 100× a review
    prompt. Abstain is a feature. Never fill below the confidence gate.
 4. **Hard risk gates are not score-based:** EEO/legal/consent fields fill only
@@ -36,8 +39,17 @@ update PLAN.md in the same change and say why.**
    content scripts run on all http(s) sites for auto-detection. The form
    classifier + field-count pre-gate must gate every scan/UI so ordinary
    pages are never scanned in depth or decorated. All processing stays
-   on-device; never add network calls or telemetry to justify the broad grant.
-9. **Privacy:** no telemetry backend, no analytics. Diagnostics are local,
+   on-device; the broad grant is justified by on-device detection alone.
+   Telemetry (rule 9) may never include page content, URLs, hostnames, or
+   titles from any site the grant exposes.
+9. **Privacy (amended 2026-07-24):** anonymous usage analytics are permitted
+   under the fillLog "structure only" standard: per-event param allowlists in
+   `src/shared/telemetry-schema.ts`, reject-by-default, opt-out toggle in
+   Settings, URL-stripped error messages. Never form values, profile data,
+   resume content, saved answers, URLs, hostnames, page titles, company or
+   question text — ATS ids ("greenhouse") are the only site-shaped signal.
+   Any new event/param needs a deliberate schema entry, and
+   `site/privacy.html` must stay accurate. Diagnostics remain local,
    structure-only (never field values). Nothing sensitive in
    `chrome.storage.local`. No fake encryption — plaintext-with-honest-copy or
    real passphrase AES-GCM, nothing between.
