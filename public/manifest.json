@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ApplyOnce: Job Application Autofill",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Autofill job applications on Greenhouse, Lever, Ashby & more from your resume. You review, you submit. Data stays local.",
   "minimum_chrome_version": "120",
   "permissions": ["activeTab", "scripting", "storage", "sidePanel", "offscreen", "alarms", "notifications"],

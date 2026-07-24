@@ -27,7 +27,7 @@ You stay in control
 
 Your data never leaves your device
 • No account, no signup, no cloud. Your profile, documents, and history live in your browser's local storage.
-• Nothing is transmitted: no analytics, no telemetry, no tracking. The source code is public on GitHub.
+• Anonymous usage statistics only: the extension reports which features run and whether they succeed — never form values, resume content, or page addresses — and you can switch this off in Settings. The source code is public on GitHub.
 • Optional passphrase encryption (AES-GCM) for your profile and documents.
 • Sensitive questions (work authorization, sponsorship, EEO, salary) are answered only from responses you explicitly set, never inferred.
 
@@ -83,7 +83,8 @@ Permission justifications:
 
 ### Privacy tab — exact checkbox answers
 
-Data types collected (check ONLY these three):
+Data types collected (check ONLY these four — updated 2026-07-24 for
+telemetry):
 [x] Personally identifiable information
     (user-entered profile: name, email, phone, address; resume file)
 [x] Web history
@@ -91,14 +92,17 @@ Data types collected (check ONLY these three):
     tracker only)
 [x] Website content
     (form structure read to fill; optional posting-text snapshot, local only)
+[x] User activity
+    (anonymous feature-usage and error events sent to Google Analytics:
+    event counts, job-platform name, fill outcome counts, browser language
+    and timezone under a random id. Never form values, resume content, page
+    addresses, or keystrokes. Opt-out toggle in Settings)
 
 Leave UNCHECKED: Health information; Financial and payment information
 (salary expectation is user-entered profile data, not transactions/cards);
 Authentication information (the optional vault passphrase is never stored or
 transmitted); Personal communications; Location (city/country are typed by
-the user, no IP/GPS collection); User activity (no monitoring, clickstream,
-or keylogging — the fill log records the extension's own actions, structure
-only).
+the user, no IP/GPS collection).
 
 Certifications (check all three — all true):
 [x] I do not sell or transfer user data to third parties, outside of the
@@ -112,9 +116,10 @@ Remote code: "No, I am not using remote code" (MV3; everything is bundled).
 
 Privacy policy URL (required because data types are declared):
 https://nyadzayo.github.io/ApplyOnce/privacy.html
-The policy enumerates exactly the three declared categories, states zero
-transmission, and carries the Limited Use compliance statement — keep it in
-lockstep with these checkboxes on every future change.
+The policy enumerates exactly the four declared categories (including the
+anonymous usage statistics with their allowlist and opt-out) and carries the
+Limited Use compliance statement — keep it in lockstep with these checkboxes
+on every future change.
 
 ## Don'ts (from the research)
 - No Workday in keywords until the adapter is genuinely good (reviews enforce).

@@ -1,6 +1,6 @@
 {
   "name": "applyonce",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
   "description": "Fills job application forms with the user's locally stored profile.",
