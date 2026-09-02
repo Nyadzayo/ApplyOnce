@@ -20,5 +20,5 @@
       "@storage/*": ["src/storage/*"]
     }
   },
-  "include": ["src", "tests", "evals", "vite.config.ts", "vite.content.config.ts", "vitest.config.ts"]
+  "include": ["src", "tests", "evals", "vite.config.ts", "vite.content.config.ts", "vite.background.firefox.config.ts", "vitest.config.ts"]
 }

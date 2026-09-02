@@ -369,14 +369,27 @@ async function renderWidget(ctx: WidgetCtx, locked: boolean): Promise<void> {
   collapseBtn.setAttribute("aria-label", "Minimize");
   pill.append(pillLogo, label, fillBtn, collapseBtn);
 
-  const setLabel = (html: string) => {
-    label.innerHTML = html;
+  // built from nodes, not innerHTML (AMO validator flags dynamic innerHTML)
+  const setLabel = (strong: string, muted: string | null, failed: string | null = null) => {
+    label.replaceChildren();
+    const b = document.createElement("b");
+    b.textContent = strong;
+    label.append(b);
+    if (muted) {
+      const span = document.createElement("span");
+      span.className = "muted";
+      span.textContent = muted;
+      label.append(" ", span);
+    }
+    if (failed) {
+      const span = document.createElement("span");
+      span.style.color = "#dc2626";
+      span.textContent = failed;
+      label.append(" ", span);
+    }
   };
-  setLabel(
-    locked
-      ? `<b>ApplyOnce</b> <span class="muted">vault locked</span>`
-      : `<b>${ready} ready</b>${review ? ` <span class="muted">· ${review} need you</span>` : ""}`,
-  );
+  if (locked) setLabel("ApplyOnce", "vault locked");
+  else setLabel(`${ready} ready`, review ? `· ${review} need you` : null);
 
   // --- list + rare actions ------------------------------------------------------
   const list = document.createElement("div");
@@ -459,7 +472,7 @@ async function renderWidget(ctx: WidgetCtx, locked: boolean): Promise<void> {
   });
   undoBtn.addEventListener("click", () => {
     void undoLastFill(ctx.fillerDeps).then((n) => {
-      setLabel(`<b>↩ ${n} restored</b>`);
+      setLabel(`↩ ${n} restored`, null);
       undoBtn.style.display = "none";
       appliedBtn.style.display = "none";
       bub.textContent = String(counts().ready);
@@ -483,9 +496,9 @@ async function renderWidget(ctx: WidgetCtx, locked: boolean): Promise<void> {
     fillBtn.textContent = "Filling…";
     void runFill(ctx).then((summary) => {
       setLabel(
-        `<b>✓ ${summary.filled} filled</b>${
-          summary.review ? ` <span class="muted">· ${summary.review} need you</span>` : ""
-        }${summary.failed ? ` <span style="color:#dc2626">· ${summary.failed} failed</span>` : ""}`,
+        `✓ ${summary.filled} filled`,
+        summary.review ? `· ${summary.review} need you` : null,
+        summary.failed ? `· ${summary.failed} failed` : null,
       );
       bub.textContent = "✓";
       bub.classList.add("done");

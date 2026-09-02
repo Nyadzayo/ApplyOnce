@@ -1,3 +1,4 @@
+import { hasTelemetryConsent } from "@shared/platform";
 import {
   sanitizeParams,
   stripUrls,
@@ -40,6 +41,7 @@ export function isTelemetryConfigured(): boolean {
 
 export async function isTelemetryEnabled(): Promise<boolean> {
   try {
+    if (!(await hasTelemetryConsent())) return false; // Firefox install-time choice
     const stored = await chrome.storage.local.get(ENABLED_KEY);
     return stored[ENABLED_KEY] !== false; // default on; opt-out in Settings
   } catch {
