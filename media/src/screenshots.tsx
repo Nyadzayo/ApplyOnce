@@ -201,3 +201,29 @@ export const Thumbnail: React.FC = () => (
     </div>
   </Frame>
 );
+
+export const Screenshot6: React.FC = () => (
+  <PanelShot
+    src="shots/panel-scan-review.png"
+    caption="Scanned or photographed resume? Still read, on your device"
+    points={[
+      "Text recognition runs inside the extension",
+      "Nothing is uploaded, ever",
+      "Uncertain fields say \u201ccheck this\u201d",
+      "You confirm before anything is saved",
+    ]}
+  />
+);
+
+export const Screenshot7: React.FC = () => (
+  <PanelShot
+    src="shots/panel-reimport.png"
+    caption="New resume? Import it in one click"
+    points={[
+      "Work history, education and skills update",
+      "Your answers and settings stay",
+      "The file attached to applications is replaced",
+      "Everything stays on this device",
+    ]}
+  />
+);

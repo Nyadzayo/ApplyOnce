@@ -94,6 +94,11 @@ Free, open source, local-first job application autofill. If a form does not fill
 
 ## Assets (media/out/ — dimensions in filenames, verified against CWS spec)
 - screenshot-1-1280x800.png       (screenshot slot; 1280x800 required)
+- screenshot-6-1280x800.png       (0.2: scanned resume review with "check this"; from Screenshot6)
+- screenshot-7-1280x800.png       (0.2: Profile tab, Import a new resume; from Screenshot7)
+  Raw panel captures come from `node e2e/capture-shots.mjs` (real extension,
+  420x760 at 2x) into media/public/shots/; render with
+  `npx remotion still Screenshot6 out/screenshot-6-1280x800.png` in media/.
 - small-promo-tile-440x280.png    (small promo tile; 440x280 required)
 - marquee-promo-tile-1400x560.png (marquee; 1400x560 required — NOT 1440x680)
 - social-square-1080x1080.png     (social, not for the store dashboard)

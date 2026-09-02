@@ -2,8 +2,9 @@ import "./index.css";
 import React from "react";
 import { Composition, Still } from "remotion";
 import { HowItWorks } from "./HowItWorks";
+import { Update02, UPDATE02_FRAMES } from "./Update02";
 import { Marquee, OgCard, PromoTile, SmallTile, SquareCard } from "./cards";
-import { Screenshot2, Screenshot3, Screenshot4, Screenshot5, Thumbnail } from "./screenshots";
+import { Screenshot2, Screenshot3, Screenshot4, Screenshot5, Screenshot6, Screenshot7, Thumbnail } from "./screenshots";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -16,6 +17,8 @@ export const RemotionRoot: React.FC = () => {
         width={1920}
         height={1080}
       />
+      {/* LinkedIn release story, 4:5 feed video */}
+      <Composition id="Update02" component={Update02} durationInFrames={UPDATE02_FRAMES} fps={30} width={1080} height={1350} />
       {/* Chrome Web Store assets */}
       <Still id="PromoTile" component={PromoTile} width={1280} height={800} />
       <Still id="SmallTile" component={SmallTile} width={440} height={280} />
@@ -25,6 +28,8 @@ export const RemotionRoot: React.FC = () => {
       <Still id="Screenshot3" component={Screenshot3} width={1280} height={800} />
       <Still id="Screenshot4" component={Screenshot4} width={1280} height={800} />
       <Still id="Screenshot5" component={Screenshot5} width={1280} height={800} />
+      <Still id="Screenshot6" component={Screenshot6} width={1280} height={800} />
+      <Still id="Screenshot7" component={Screenshot7} width={1280} height={800} />
       {/* Social */}
       <Still id="SquareCard" component={SquareCard} width={1080} height={1080} />
       <Still id="OgCard" component={OgCard} width={1200} height={630} />
