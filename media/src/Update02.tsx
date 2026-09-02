@@ -83,6 +83,57 @@ const Brand: React.FC = () => (
 
 // ---------------------------------------------------------------- scenes
 
+// Title card: fully visible from frame 0 (platforms without custom
+// thumbnails show the first frame), gentle settle, then fades out. The
+// thumbnail PNG is a still of this scene.
+const TitleCard: React.FC<{ duration: number }> = ({ duration }) => {
+  const f = useCurrentFrame();
+  const settle = interpolate(f, [0, 40], [1.04, 1], { ...clamp, easing: ease });
+  const out = interpolate(f, [duration - 12, duration], [1, 0], clamp);
+  return (
+    <AbsoluteFill
+      style={{
+        opacity: out,
+        background: `radial-gradient(1100px 900px at 50% 30%, ${C.stampWash} 0%, ${C.paper} 62%)`,
+        fontFamily: FONT,
+        color: C.ink,
+        alignItems: "center",
+        justifyContent: "center",
+        padding: `110px ${PAD}px`,
+      }}
+    >
+      <div style={{ scale: settle, display: "flex", flexDirection: "column", alignItems: "center", gap: 44 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          <Stamp size={72} />
+          <Wordmark size={54} />
+        </div>
+        <div style={{ display: "flex", gap: 24 }}>
+          {[0, 1, 2].map((i) => (
+            <div key={i} style={{ width: 132, height: 172, borderRadius: 16, background: C.card, border: `3px solid ${i === 1 ? "#c0392b" : C.lineStrong}`, boxShadow: "0 12px 34px rgba(0,43,75,0.12)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10 }}>
+              {i === 1 ? (
+                <div style={{ fontSize: 30, fontWeight: 800, color: "#c0392b", textAlign: "center", lineHeight: 1.1 }}>0<br />words</div>
+              ) : (
+                [0, 1, 2, 3].map((k) => <div key={k} style={{ width: 80 - k * 12, height: 10, borderRadius: 5, background: C.line }} />)
+              )}
+            </div>
+          ))}
+        </div>
+        <div style={{ fontSize: 104, lineHeight: 1.02, fontWeight: 800, letterSpacing: "-0.03em", textAlign: "center" }}>
+          8 resumes in.
+          <br />
+          <span style={{ color: "#c0392b" }}>0 words out.</span>
+        </div>
+        <div style={{ fontSize: 44, lineHeight: 1.25, fontWeight: 600, textAlign: "center", color: C.muted, maxWidth: W - 2 * PAD }}>
+          What we learned building ApplyOnce 0.2
+        </div>
+        <div style={{ fontSize: 30, fontWeight: 700, color: C.stamp, border: `3px solid ${C.stamp}`, borderRadius: 999, padding: "10px 26px" }}>
+          45 seconds
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
 const Hook: React.FC<{ duration: number }> = ({ duration }) => {
   const f = useCurrentFrame();
   return (
@@ -273,6 +324,7 @@ const Cta: React.FC<{ duration: number }> = ({ duration }) => {
 // ---------------------------------------------------------------- timeline
 
 const SCENES: [React.FC<{ duration: number }>, number][] = [
+  [TitleCard, 75],
   [Hook, 105],
   [Discovery, 210],
   [Pool, 165],

@@ -1,9 +1,13 @@
 # LinkedIn: ApplyOnce 0.2 release story
 
-Video: media/out/linkedin-v0.2.mp4 (1080x1350, 43 s, no audio; captions are
+Video: media/out/linkedin-v0.2.mp4 (1080x1350, 45 s, no audio; captions are
 burned in, so it works muted in the feed). Source: media/src/Update02.tsx.
-Post the video natively (upload, not a link) and put the text below as the
-post body. First line is the hook LinkedIn shows before "see more".
+Thumbnail: media/out/linkedin-v0.2-thumbnail.png (1080x1350). Upload it as
+the custom thumbnail where the platform allows; the video's first 2.5 s
+are the same title card ("8 resumes in. 0 words out."), so a platform that
+ignores thumbnails still opens on it. Post the video natively (upload, not
+a link) and put the text below as the post body. First line is the hook
+LinkedIn shows before "see more".
 
 ## Post (story version)
 
@@ -37,7 +41,7 @@ Most resume parsers read the words. ApplyOnce 0.2 reads the layout, and now read
 
 ## Video description / alt text
 
-A 43-second animation: a question ("Your resume has a text layer. Or does it?"), eight resume icons that each show "0 words", chips naming resume layouts, a document diagram whose headings, columns and date cell light up while a scan line passes, three measured results, a form field filled in amber with a "check this" tag, and the ApplyOnce mark with "You review. You submit. Data stays local."
+A 45-second animation: a title card reading "8 resumes in. 0 words out.", a question ("Your resume has a text layer. Or does it?"), eight resume icons that each show "0 words", chips naming resume layouts, a document diagram whose headings, columns and date cell light up while a scan line passes, three measured results, a form field filled in amber with a "check this" tag, and the ApplyOnce mark with "You review. You submit. Data stays local."
 
 ## Posting notes
 
