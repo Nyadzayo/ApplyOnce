@@ -2,13 +2,19 @@ import type { CandidateProfile, EducationEntry, WorkEntry } from "@shared/types"
 
 // Shared click-to-edit profile form used by onboarding review and the vault.
 
+/** Field paths the parser flagged below high confidence ("work[0].title"). */
+export type FieldFlags = ReadonlySet<string>;
+
 export function ProfileForm({
   profile,
   onChange,
+  flags,
 }: {
   profile: CandidateProfile;
   onChange: (p: CandidateProfile) => void;
+  flags?: FieldFlags;
 }) {
+  const flag = (path: string) => flags?.has(path) ?? false;
   const set = (fn: (p: CandidateProfile) => void) => {
     const copy = structuredClone(profile);
     fn(copy);
@@ -19,8 +25,8 @@ export function ProfileForm({
     <div>
       <h2>Basics</h2>
       <div className="split">
-        <Text label="First name" value={profile.basics.firstName} onChange={(v) => set((p) => { p.basics.firstName = v; })} />
-        <Text label="Last name" value={profile.basics.lastName} onChange={(v) => set((p) => { p.basics.lastName = v; })} />
+        <Text label="First name" value={profile.basics.firstName} flag={flag("basics.firstName")} onChange={(v) => set((p) => { p.basics.firstName = v; })} />
+        <Text label="Last name" value={profile.basics.lastName} flag={flag("basics.lastName")} onChange={(v) => set((p) => { p.basics.lastName = v; })} />
       </div>
       <Text label="Email" value={profile.basics.email} onChange={(v) => set((p) => { p.basics.email = v; })} />
       <Text label="Phone" value={profile.basics.phone} onChange={(v) => set((p) => { p.basics.phone = v; })} />
@@ -48,6 +54,7 @@ export function ProfileForm({
         <WorkCard
           key={i}
           entry={w}
+          flags={{ title: flag(`work[${i}].title`), company: flag(`work[${i}].company`) }}
           onChange={(e) => set((p) => { p.work[i] = e; })}
           onRemove={() => set((p) => { p.work.splice(i, 1); })}
         />
@@ -64,6 +71,7 @@ export function ProfileForm({
         <EduCard
           key={i}
           entry={e}
+          flags={{ school: flag(`education[${i}].school`) }}
           onChange={(x) => set((p) => { p.education[i] = x; })}
           onRemove={() => set((p) => { p.education.splice(i, 1); })}
         />
@@ -133,10 +141,10 @@ export function ExplicitSettingsForm({
   );
 }
 
-function Text({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) {
+function Text({ label, value, onChange, flag }: { label: string; value: string; onChange: (v: string) => void; flag?: boolean }) {
   return (
-    <div className="field-row">
-      <label>{label}</label>
+    <div className={flag ? "field-row check" : "field-row"}>
+      <label>{label}{flag && <span className="check-tag"> · check this</span>}</label>
       <input type="text" value={value} onChange={(e) => onChange(e.target.value)} />
     </div>
   );
@@ -181,16 +189,18 @@ function WorkCard({
   entry,
   onChange,
   onRemove,
+  flags,
 }: {
   entry: WorkEntry;
   onChange: (e: WorkEntry) => void;
   onRemove: () => void;
+  flags?: { title: boolean; company: boolean };
 }) {
   return (
     <div className="card">
       <div className="split">
-        <Text label="Title" value={entry.title} onChange={(v) => onChange({ ...entry, title: v })} />
-        <Text label="Company" value={entry.company} onChange={(v) => onChange({ ...entry, company: v })} />
+        <Text label="Title" value={entry.title} flag={flags?.title} onChange={(v) => onChange({ ...entry, title: v })} />
+        <Text label="Company" value={entry.company} flag={flags?.company} onChange={(v) => onChange({ ...entry, company: v })} />
       </div>
       <div className="split">
         <Text label="Start (YYYY-MM)" value={entry.start} onChange={(v) => onChange({ ...entry, start: v })} />
@@ -218,14 +228,16 @@ function EduCard({
   entry,
   onChange,
   onRemove,
+  flags,
 }: {
   entry: EducationEntry;
   onChange: (e: EducationEntry) => void;
   onRemove: () => void;
+  flags?: { school: boolean };
 }) {
   return (
     <div className="card">
-      <Text label="School" value={entry.school} onChange={(v) => onChange({ ...entry, school: v })} />
+      <Text label="School" value={entry.school} flag={flags?.school} onChange={(v) => onChange({ ...entry, school: v })} />
       <div className="split">
         <Text label="Degree" value={entry.degree} onChange={(v) => onChange({ ...entry, degree: v })} />
         <Text label="Field of study" value={entry.field} onChange={(v) => onChange({ ...entry, field: v })} />

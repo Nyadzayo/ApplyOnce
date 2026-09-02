@@ -91,7 +91,13 @@
      The extension reports feature-usage events to Google Analytics under a
      random identifier so we can see what's working: things like "a fill
      completed on a Greenhouse form: 24 fields, 20 filled, 3 held for review,
-     took 4 seconds" or "resume import failed: PDF". Every event is checked
+     took 4 seconds", "resume import found 3 jobs, 1 school and 12 skills, 2
+     fields flagged for checking" or "resume import failed: PDF". Scanned resumes are read
+     with on-device OCR that ships inside the extension, so no page image is
+     ever uploaded. If you turn on
+     the optional on-device question classifier, the extension downloads its
+     model files once from our own server; that download carries no data about
+     you, and the model then runs entirely on your device. Every event is checked
      against a strict allowlist before it leaves your device. The following are
      <em>never</em> sent, on any event:</p>
   <ul>

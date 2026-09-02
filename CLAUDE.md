@@ -21,6 +21,16 @@ update PLAN.md in the same change and say why.**
    2026-07-24) is anonymous usage telemetry: allowlisted GA4 Measurement
    Protocol events sent from the service worker only — see
    `src/shared/telemetry-schema.ts` and rule 9.
+   **(amended 2026-09-01, owner decision — v0.2):** on-device inference is
+   now in scope: (a) an intent classifier (int8 ONNX via onnxruntime-web,
+   offscreen document) as a cascade tier between saved-answer fuzzy and
+   abstain, and (b) model-assisted resume header parsing (Chrome Prompt
+   API / Gemini Nano where available, heuristics fallback, output must be
+   verbatim substrings of source lines). A one-time download of static
+   model assets from a project-controlled host, cached locally, is
+   permitted. User data, question text, and page content still NEVER leave
+   the device; hosted model APIs remain forbidden; all risk gates in rule
+   4 apply unchanged to model-mapped fields (see PLAN.md Part 9).
 3. **Precision beats recall.** Every wrong silent fill costs 100× a review
    prompt. Abstain is a feature. Never fill below the confidence gate.
 4. **Hard risk gates are not score-based:** EEO/legal/consent fields fill only
@@ -59,7 +69,8 @@ update PLAN.md in the same change and say why.**
 
 zod, dexie, pdfjs-dist, mammoth, tesseract.js, react, react-dom, vite,
 @vitejs/plugin-react, typescript, vitest, jsdom, playwright,
-@types/chrome. Nothing else without approval.
+@types/chrome, onnxruntime-web (v0.2 classifier tier, owner decision
+2026-09-01, PLAN.md Part 9 s4). Nothing else without approval.
 
 ## Layout (PLAN.md Phase 1)
 
@@ -85,8 +96,12 @@ zod, dexie, pdfjs-dist, mammoth, tesseract.js, react, react-dom, vite,
   retry-once, verify, else downgrade-to-review. Never loop.
 - Fill orchestration: DOM order, max 2 rescan rounds, hard stop.
 - **Before claiming done:** `npm run typecheck && npm test && npm run eval`.
-  For content-script or filler changes also `npm run build`. Report actual
-  results; if something fails, say so.
+  For content-script or filler changes also `npm run build` and
+  `npm run build:firefox`; for background/panel/platform changes also run
+  `npm run e2e:firefox`; for offscreen/parser changes also `npm run e2e:chrome`
+  (the offscreen document behaves differently from a tab: no animation
+  frames, transferred buffers). Report actual results; if something fails,
+  say so.
 - When unsure about a design question, check PLAN.md first, then ask the
   user. Do not invent architecture.
 

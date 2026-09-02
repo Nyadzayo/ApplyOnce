@@ -8,6 +8,8 @@ import type {
 } from "@shared/types";
 import { b64encode, parseMsg, type Msg } from "@shared/messages";
 import { mapFields } from "@shared/mapper";
+import { ClassifyResponse } from "@shared/messages";
+import type { ClassifierHint } from "@shared/intent-map";
 import { resolveOption } from "@shared/normalize";
 import { ATS_IFRAME_PATTERNS } from "@shared/ats";
 import { loadDocumentBytes } from "@storage/vault";
@@ -92,7 +94,12 @@ export function FillView({ vault }: { vault: VaultHook }) {
 
   // ---- deterministic mapping ------------------------------------------------
 
-  const decisions = useMemo<FieldDecision[]>(() => {
+  // v0.2 tier 5.5: classifier hints for the fields nothing else could map.
+  // Requested once per scan through the SW (Chrome offscreen document); the
+  // deterministic decisions stand until they arrive, and stand alone when
+  // the model is off or unavailable.
+  const [hints, setHints] = useState<Map<string, ClassifierHint> | undefined>(undefined);
+  const mapAll = (classifier?: Map<string, ClassifierHint>): FieldDecision[] => {
     if (!vault.profile || !vault.settings) return [];
     const all: FieldDecision[] = [];
     for (const frame of Object.values(frames)) {
@@ -104,11 +111,44 @@ export function FillView({ vault }: { vault: VaultHook }) {
           documents: vault.documents,
           dateFormatHint: vault.settings.dateFormatHint,
           pageContext: parseJobPageTitle(pageTitle, frame.ats),
+          classifier,
         }),
       );
     }
     return all;
-  }, [frames, pageTitle, vault.profile, vault.answers, vault.documents, vault.settings]);
+  };
+  useEffect(() => {
+    setHints(undefined);
+    if (!vault.settings?.classifierEnabled || !vault.profile) return;
+    const base = mapAll();
+    const abstained = new Set(base.filter((d) => d.action === "abstain" && !d.canonical).map((d) => d.ref));
+    const fields = Object.values(frames)
+      .flatMap((f) => f.signals)
+      .filter((s) => abstained.has(s.ref) && s.visible && s.label && s.kind !== "file")
+      .map((s) => ({ ref: s.ref, label: s.label, kind: s.kind, options: s.options?.map((o) => o.text).slice(0, 8) }));
+    if (fields.length === 0) return;
+    let cancelled = false;
+    void chrome.runtime
+      .sendMessage({ kind: "CLASSIFY_REQUEST", fields })
+      .then((resp: unknown) => {
+        const parsed = ClassifyResponse.safeParse(resp);
+        if (cancelled || !parsed.success || !parsed.data.ok) return;
+        const m = new Map<string, ClassifierHint>();
+        for (const h of parsed.data.hints) m.set(h.ref, { intent: h.intent, score: h.score, key: h.key as ClassifierHint["key"] });
+        setHints(m);
+      })
+      .catch(() => undefined);
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [frames, vault.settings?.classifierEnabled]);
+
+  const decisions = useMemo<FieldDecision[]>(
+    () => mapAll(hints),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [frames, pageTitle, vault.profile, vault.answers, vault.documents, vault.settings, hints],
+  );
 
   const signalByRef = useMemo(() => {
     const m = new Map<string, FieldSignal>();
@@ -587,6 +627,7 @@ function SourceBadge({ d }: { d: FieldDecision }) {
     lexicon: "Label",
     "answer-exact": "Saved",
     "answer-fuzzy": "Saved (similar)",
+    classifier: "Suggested by on-device model",
   };
   return d.source ? <span className="badge grey">{label[d.source] ?? d.source}</span> : null;
 }

@@ -1,4 +1,5 @@
 import { parseMsg, type Msg } from "@shared/messages";
+import { ensureOffscreen, offscreenRequest } from "./offscreen-bridge";
 import { createJob, updateJob } from "./jobs";
 import { computeDecisions, prepareFiles } from "./mapping";
 import { appendFillLog } from "@storage/filllog";
@@ -14,6 +15,7 @@ import {
   trackEvent,
   trackOnce,
 } from "./telemetry";
+import { hasOffscreen, hasSidePanel, openPanel } from "@shared/platform";
 
 installGlobalErrorHandlers("sw");
 
@@ -22,7 +24,9 @@ installGlobalErrorHandlers("sw");
 // the worker may be killed at any time.
 
 chrome.runtime.onInstalled.addListener((details) => {
-  void chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
+  if (hasSidePanel()) {
+    void chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
+  }
   void chrome.alarms?.create(HEARTBEAT_ALARM, {
     periodInMinutes: 60 * 24,
     delayInMinutes: 5,
@@ -36,6 +40,15 @@ chrome.runtime.onInstalled.addListener((details) => {
     void trackEvent("extension_updated", { version });
   }
 });
+
+// Firefox has no openPanelOnActionClick: the toolbar click is a user gesture,
+// so open the sidebar from action.onClicked. On Chrome the panel behaviour
+// above handles the click and this listener never fires.
+if (!hasSidePanel()) {
+  chrome.action?.onClicked.addListener((tab) => {
+    void openPanel(tab.id);
+  });
+}
 
 // ---------------------------------------------------------------------------
 // follow-up reminders: alarm fires → local notification → click opens the job
@@ -156,19 +169,7 @@ async function startFill(
 // offscreen document (single instance; created on demand for CV parsing)
 // ---------------------------------------------------------------------------
 
-async function ensureOffscreen(): Promise<void> {
-  const has = await chrome.offscreen.hasDocument?.();
-  if (has) return;
-  await chrome.offscreen.createDocument({
-    url: "offscreen.html",
-    reasons: [
-      chrome.offscreen.Reason.DOM_PARSER,
-      chrome.offscreen.Reason.BLOBS,
-      chrome.offscreen.Reason.WORKERS,
-    ],
-    justification: "Parses the user's resume file (PDF/DOCX) locally.",
-  });
-}
+// ensureOffscreen/offscreenRequest live in ./offscreen-bridge (shared with mapping.ts)
 
 // ---------------------------------------------------------------------------
 // router — zod-parsed, reject-by-default
@@ -203,10 +204,36 @@ chrome.runtime.onMessage.addListener((raw, _sender, sendResponse) => {
       );
       return true;
     }
+    case "CLASSIFY_REQUEST":
+    case "CLASSIFIER_STATUS":
+    case "CLASSIFIER_WARMUP": {
+      // panel -> SW -> offscreen; the offscreen answer is relayed verbatim
+      void offscreenRequest(msg)
+        .then((resp) =>
+          sendResponse(
+            resp ?? (msg.kind === "CLASSIFIER_STATUS"
+              ? { available: false, cached: false, error: "offscreen unavailable" }
+              : { ok: false, hints: [], error: "offscreen unavailable" }),
+          ),
+        )
+        .catch((e: unknown) =>
+          sendResponse({ ok: false, available: false, cached: false, hints: [], error: e instanceof Error ? e.message : String(e) }),
+        );
+      return true;
+    }
     case "PARSE_CV_REQUEST": {
       // ensure the offscreen parser exists, then re-forward until it acks —
       // right after createDocument the module may still be evaluating and a
       // single fire-and-forget send would be lost
+      if (!hasOffscreen()) {
+        // Firefox: no offscreen API, but the background is an event page with
+        // DOM + workers, so the parser runs here (PLAN.md Part 1 deviation)
+        void import("../offscreen/parse")
+          .then(({ handleParse }) => handleParse(msg))
+          .then(() => sendResponse({ ok: true }))
+          .catch(() => sendResponse({ ok: false }));
+        return true;
+      }
       void (async () => {
         let acked = false;
         try {
@@ -312,8 +339,9 @@ chrome.runtime.onMessage.addListener((raw, _sender, sendResponse) => {
     case "OPEN_PANEL": {
       const tabId = _sender.tab?.id;
       if (tabId !== undefined) {
-        // valid within the user-gesture window of the widget click
-        void chrome.sidePanel.open({ tabId }).catch(() => {});
+        // Chrome: valid within the user-gesture window of the widget click.
+        // Firefox: message handlers aren't gestures, so this opens a tab.
+        void openPanel(tabId);
       }
       return false;
     }

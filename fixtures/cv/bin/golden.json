@@ -1,0 +1,2411 @@
+{
+ "classic-right-dates--amara.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "classic-right-dates--marcus.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "classic-right-dates--sofia.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ },
+ "classic-right-dates--priya.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "dates-own-line--amara.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "dates-own-line--marcus.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "dates-own-line--sofia.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ },
+ "dates-own-line--priya.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "sidebar--amara.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "sidebar--marcus.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "sidebar--sofia.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ },
+ "sidebar--priya.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "word-table--amara.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "word-table--marcus.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "word-table--sofia.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ },
+ "word-table--priya.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "linkedin-export--amara.pdf": {
+  "dates": "month",
+  "minSkills": 3,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "linkedin-export--marcus.pdf": {
+  "dates": "month",
+  "minSkills": 3,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "linkedin-export--sofia.pdf": {
+  "dates": "month",
+  "minSkills": 3,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ },
+ "linkedin-export--priya.pdf": {
+  "dates": "month",
+  "minSkills": 3,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "europass--amara.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "europass--marcus.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "europass--sofia.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ },
+ "europass--priya.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "ats-plain--amara.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "ats-plain--marcus.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "ats-plain--sofia.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ },
+ "ats-plain--priya.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "academic--amara.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "academic--marcus.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "academic--sofia.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ },
+ "academic--priya.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "german--lena.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Lena",
+  "lastName": "Hoffmann",
+  "email": "lena.hoffmann@web.de",
+  "phone": "+49 30 1234567",
+  "work": [
+   {
+    "company": "Zalando SE",
+    "title": "Produktmanagerin",
+    "location": "Berlin",
+    "start": "2021-04",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Rocket Internet",
+    "title": "Werkstudentin",
+    "location": "Berlin",
+    "start": "2019-10",
+    "end": "2021-03",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "TU Berlin",
+    "field": "Wirtschaftsinformatik",
+    "degree": "Master of Science"
+   }
+  ]
+ },
+ "latex-itemize--amara.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "latex-itemize--marcus.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "latex-itemize--sofia.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ },
+ "latex-itemize--priya.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "smallcaps-inline--amara.pdf": {
+  "dates": "year",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "smallcaps-inline--marcus.pdf": {
+  "dates": "year",
+  "minSkills": 4,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "smallcaps-inline--sofia.pdf": {
+  "dates": "year",
+  "minSkills": 4,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ },
+ "smallcaps-inline--priya.pdf": {
+  "dates": "year",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "ats-plain--amara.docx": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "ats-plain--amara--lo.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "ats-plain--marcus.docx": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "ats-plain--marcus--lo.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "ats-plain--priya.docx": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "ats-plain--priya--lo.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "ats-plain--sofia.docx": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ },
+ "ats-plain--sofia--lo.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ },
+ "classic-right-dates--amara.docx": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "classic-right-dates--amara--lo.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "classic-right-dates--marcus.docx": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "classic-right-dates--marcus--lo.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "classic-right-dates--priya.docx": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "classic-right-dates--priya--lo.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "classic-right-dates--sofia.docx": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ },
+ "classic-right-dates--sofia--lo.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ },
+ "dates-own-line--amara.docx": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "dates-own-line--amara--lo.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "dates-own-line--marcus.docx": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "dates-own-line--marcus--lo.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "dates-own-line--priya.docx": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "dates-own-line--priya--lo.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "dates-own-line--sofia.docx": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ },
+ "dates-own-line--sofia--lo.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ },
+ "word-table--amara.docx": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "word-table--amara--lo.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "word-table--marcus.docx": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "word-table--marcus--lo.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Marcus",
+  "lastName": "Webb",
+  "email": "marcus@webbdesign.io",
+  "phone": "+1 415 555 0022",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer",
+    "location": "Remote",
+    "start": "2022-01",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer",
+    "location": "San Francisco, CA",
+    "start": "2019-04",
+    "end": "2021-12",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts",
+    "field": "Graphic Design",
+    "degree": "BFA"
+   }
+  ]
+ },
+ "word-table--priya.docx": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "word-table--priya--lo.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "word-table--sofia.docx": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ },
+ "word-table--sofia--lo.pdf": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Sofía",
+  "lastName": "Álvarez-Ruiz",
+  "email": "sofia.alvarez@gmail.com",
+  "phone": "+34 612 345 678",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter",
+    "location": "Madrid, Spain",
+    "start": "2020-09",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier",
+    "location": "Girona, Spain",
+    "start": "2016-05",
+    "end": "2020-08",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid",
+    "field": "Psicología",
+    "degree": "Grado"
+   }
+  ]
+ }
+}

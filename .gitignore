@@ -1,6 +1,11 @@
 node_modules/
 dist/
+dist-firefox/
 *.log
 .DS_Store
 release/
 .env
+# classifier model bundle for development builds (served from the asset host in releases)
+public/models/
+# tesseract.js runtime + traineddata, vendored at build by scripts/fetch-ocr-assets.mjs
+public/tesseract/

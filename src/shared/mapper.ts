@@ -11,6 +11,7 @@ import { type CanonicalKey, riskClassOf } from "./canonical-fields";
 import { adapterLookup } from "./ats";
 import { autocompleteToCanonical } from "./autocomplete-map";
 import { lexiconLookup } from "./lexicon";
+import { CLASSIFIER_THRESHOLD, type ClassifierHint } from "./intent-map";
 import { fuzzyScore, normalizeLabel, resolveOption, tokenSet } from "./normalize";
 import {
   actionForConfidence,
@@ -39,6 +40,8 @@ export interface MapperContext {
   dateFormatHint: string;
   /** detected {company, role} for template answers */
   pageContext?: PageContext;
+  /** v0.2: on-device classifier predictions by field ref (PLAN.md Part 9 s4) */
+  classifier?: ReadonlyMap<string, ClassifierHint>;
 }
 
 export const FUZZY_THRESHOLD = 0.85;
@@ -123,8 +126,11 @@ export function mapField(sig: FieldSignal, ctx: MapperContext): FieldDecision {
   if (!canonical && sig.kind === "file") {
     // "cv" is too short for substring patterns — token-match file inputs
     const tokens = tokenSet(sig.label);
+    // "portfolio ... in addition to your resume" wants a different file
+    const otherDoc = ["portfolio", "sample", "samples", "transcript", "transcripts", "photo", "headshot"]
+      .some((w) => tokens.has(w));
     if (tokens.has("cover")) canonical = "attachments.coverLetter";
-    else if (tokens.has("resume") || tokens.has("cv") || tokens.has("résumé"))
+    else if (!otherDoc && (tokens.has("resume") || tokens.has("cv") || tokens.has("résumé")))
       canonical = "attachments.resume";
     if (canonical) source = "lexicon";
   }
@@ -136,6 +142,15 @@ export function mapField(sig: FieldSignal, ctx: MapperContext): FieldDecision {
   // -- tiers 4–5: saved answers ---------------------------------------------
   const hit = retrieveAnswer(sig.label, ctx.savedAnswers);
   if (hit) return decideForAnswer(sig, hit, ctx);
+
+  // -- tier 5.5 (v0.2): on-device intent classifier proposes a canonical key.
+  // It only proposes: the same gates apply as to any other source (EEO/legal
+  // /salary need explicit settings, options stay verbatim), and its rule tier
+  // caps the confidence at amber.
+  const hint = ctx.classifier?.get(sig.ref);
+  if (hint?.key && hint.score >= CLASSIFIER_THRESHOLD) {
+    return decideForCanonical(sig, hint.key as CanonicalKey, "classifier", ctx);
+  }
 
   // -- tier 6 ----------------------------------------------------------------
   return abstain(sig, "no rule, token, lexicon or saved answer matched");
@@ -379,6 +394,7 @@ function reasonFor(source: MappingSource, oq: OptionQuality): string {
     lexicon: "matched the field label",
     "answer-exact": "you answered this exact question before",
     "answer-fuzzy": "similar to a question you answered before",
+    classifier: "suggested by the on-device model; check it",
   };
   return oq === "substring" ? `${base[source]} (closest option)` : base[source];
 }

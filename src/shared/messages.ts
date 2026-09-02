@@ -59,6 +59,22 @@ export const Msg = z.discriminatedUnion("kind", [
     error: z.string().optional(),
   }),
 
+  // panel/SW -> offscreen: on-device intent classifier (PLAN.md Part 9 s4).
+  // Answered via sendResponse with ClassifyResponse / ClassifierStatus.
+  z.object({
+    kind: z.literal("CLASSIFY_REQUEST"),
+    fields: z.array(
+      z.object({
+        ref: z.string(),
+        label: z.string(),
+        kind: z.string().optional(),
+        options: z.array(z.string()).optional(),
+      }),
+    ),
+  }),
+  z.object({ kind: z.literal("CLASSIFIER_STATUS") }),
+  z.object({ kind: z.literal("CLASSIFIER_WARMUP") }),
+
   // panel → SW: orchestration
   z.object({ kind: z.literal("START_SCAN"), tabId: z.number().optional() }),
   z.object({
@@ -154,6 +170,22 @@ export const Msg = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("PONG") }),
 ]);
 export type Msg = z.infer<typeof Msg>;
+
+export const ClassifyResponse = z.object({
+  ok: z.boolean(),
+  hints: z
+    .array(z.object({ ref: z.string(), intent: z.string(), score: z.number(), key: z.string().optional() }))
+    .default([]),
+  error: z.string().optional(),
+});
+export type ClassifyResponse = z.infer<typeof ClassifyResponse>;
+
+export const ClassifierStatus = z.object({
+  available: z.boolean(),
+  cached: z.boolean(),
+  error: z.string().optional(),
+});
+export type ClassifierStatus = z.infer<typeof ClassifierStatus>;
 
 // -- request/response payloads (sendResponse) --------------------------------
 
