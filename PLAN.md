@@ -487,7 +487,10 @@ Scope, in order:
    repository, tag `models-<version>` (currently
    `models-v8-ettin-encoder-32m`), so model and code live in one repo and
    each file's sha256 is in the release's manifest.json; verified live with
-   `E2E_CLASSIFIER=1 npm run e2e:chrome` (download + load 4 s). Open:
+   `E2E_CLASSIFIER=1 npm run e2e:chrome` (download + load 4 s). The tier is
+   on by default (owner decision 2026-09-02): the service worker warms the
+   model right after install/update, Settings shows its status and offers
+   the off switch. Open:
    Firefox (no offscreen document; tier is Chrome-only for now).
 5. **Parse redesign — staged and measurement-gated** (design review
    2026-09-01; revised the same day after the parse research pass, §5.0).

@@ -28,6 +28,27 @@ export function SettingsView({ vault }: { vault: VaultHook }) {
   const [telemetry, setTelemetry] = useState(true);
   const [allSites, setAllSites] = useState(true);
   const [classifierNote, setClassifierNote] = useState<string | null>(null);
+
+  // status of the on-device model; `warm` also downloads/loads it
+  async function refreshClassifier(warm: boolean) {
+    setClassifierNote("Checking the model...");
+    const status = ClassifierStatus.safeParse(await chrome.runtime.sendMessage({ kind: "CLASSIFIER_STATUS" }).catch(() => null));
+    if (!status.success || !status.data.available) {
+      setClassifierNote("The model is not available on this browser. Everything else keeps working.");
+      return;
+    }
+    if (status.data.cached && !warm) {
+      setClassifierNote("Model ready. It runs entirely on this device.");
+      return;
+    }
+    setClassifierNote(status.data.cached ? "Loading the model..." : `Downloading the model (${CLASSIFIER_DOWNLOAD_MB} MB, once)...`);
+    const result = (await chrome.runtime.sendMessage({ kind: "CLASSIFIER_WARMUP" }).catch(() => null)) as { ok?: boolean; error?: string } | null;
+    setClassifierNote(result?.ok ? "Model ready. It runs entirely on this device." : `Couldn't load the model: ${result?.error ?? "unknown error"}`);
+  }
+  useEffect(() => {
+    if (vault.settings?.classifierEnabled) void refreshClassifier(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [vault.settings?.classifierEnabled]);
   useEffect(() => {
     void getTelemetryEnabled().then(setTelemetry);
     void hasAllSitesAccess().then(setAllSites);
@@ -193,25 +214,14 @@ export function SettingsView({ vault }: { vault: VaultHook }) {
             await saveSettings({ classifierEnabled: on });
             track("settings_changed", { field: `classifier_${on ? "on" : "off"}` });
             await vault.refresh();
-            if (!on) {
-              setClassifierNote(null);
-              return;
-            }
-            setClassifierNote("Checking the model...");
-            const status = ClassifierStatus.safeParse(await chrome.runtime.sendMessage({ kind: "CLASSIFIER_STATUS" }).catch(() => null));
-            if (!status.success || !status.data.available) {
-              setClassifierNote("The model is not available in this build yet. Everything else keeps working.");
-              return;
-            }
-            setClassifierNote(status.data.cached ? "Model ready." : `Downloading the model (${CLASSIFIER_DOWNLOAD_MB} MB, once)...`);
-            const warm = (await chrome.runtime.sendMessage({ kind: "CLASSIFIER_WARMUP" }).catch(() => null)) as { ok?: boolean; error?: string } | null;
-            setClassifierNote(warm?.ok ? "Model ready. It runs entirely on this device." : `Couldn't load the model: ${warm?.error ?? "unknown error"}`);
+            if (!on) setClassifierNote("Off. Fields the rules can't map are left for you.");
+            // turning it on: the effect above downloads and loads the model
           }}
         />
         <label htmlFor="clf">
-          Use the on-device question classifier for fields the rules can't
-          map (downloads a {CLASSIFIER_DOWNLOAD_MB} MB model once; runs locally,
-          suggestions are always shown as amber for you to check)
+          On-device question classifier for fields the rules can't map (on by
+          default; downloads a {CLASSIFIER_DOWNLOAD_MB} MB model once, runs
+          locally, and its suggestions are always amber for you to check)
         </label>
       </div>
       {classifierNote && <p className="hint">{classifierNote}</p>}

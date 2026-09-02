@@ -94,9 +94,9 @@
      took 4 seconds", "resume import found 3 jobs, 1 school and 12 skills, 2
      fields flagged for checking" or "resume import failed: PDF". Scanned resumes are read
      with on-device OCR that ships inside the extension, so no page image is
-     ever uploaded. If you turn on
-     the optional on-device question classifier, the extension downloads its
-     model files once from our own server; that download carries no data about
+     ever uploaded. The on-device question
+     classifier (on by default, switch it off in Settings) downloads its model
+     files once from our GitHub release; that download carries no data about
      you, and the model then runs entirely on your device. Every event is checked
      against a strict allowlist before it leaves your device. The following are
      <em>never</em> sent, on any event:</p>

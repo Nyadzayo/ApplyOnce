@@ -5,7 +5,7 @@ Rule: never list an ATS the extension doesn't actually handle.
 
 ## What's new in 0.2.0 (store "release notes" field)
 
-Reads more resumes: LaTeX, Word and Canva layouts, LinkedIn PDF exports, and now scanned or photographed resumes (on-device OCR, nothing uploaded). Fields the parser is less sure about are marked "check this" on the review screen. Import an updated resume from the Profile tab at any time. Fewer wrong or empty fields on applications thanks to a rebuilt question lexicon. Optional on-device question classifier for questions the rules cannot map: downloads a 37 MB model once, runs locally, and only ever suggests (amber), never fills silently.
+Reads more resumes: LaTeX, Word and Canva layouts, LinkedIn PDF exports, and now scanned or photographed resumes (on-device OCR, nothing uploaded). Fields the parser is less sure about are marked "check this" on the review screen. Import an updated resume from the Profile tab at any time. Fewer wrong or empty fields on applications thanks to a rebuilt question lexicon. On-device question classifier for questions the rules cannot map (on by default, can be switched off in Settings): downloads a 37 MB model once, runs locally, and only ever suggests (amber), never fills silently.
 
 ## Name (45 char max)
 ApplyOnce: Job Application Autofill

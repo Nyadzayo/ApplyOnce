@@ -82,14 +82,16 @@ try {
     const ok = !broken && cards.length > 0;
     console.log(ok ? "  IMPORT: PASS ✅" : "  IMPORT: FAIL ❌");
     if (!ok) failed = true;
-    // E2E_CLASSIFIER=1: finish onboarding, enable the on-device classifier in
-    // Settings and wait for the model to download from the asset host
+    // E2E_CLASSIFIER=1: finish onboarding, open Settings (the classifier is on
+    // by default) and wait for the model to download from the asset host
     if (process.env.E2E_CLASSIFIER && file === files[0]) {
       await page.click("text=Looks right, continue");
       await page.click("text=Finish setup");
       await page.click("nav.tabs >> text=Settings");
       const t1 = Date.now();
-      await page.click("#clf"); // controlled input: state updates after the vault refresh, so no check()
+      const checked = await page.isChecked("#clf");
+      console.log(`  classifier default: ${checked ? "on" : "off"}`);
+      if (!checked) failed = true;
       try {
         await page.waitForSelector("text=Model ready", { timeout: 300000 });
         console.log(`  CLASSIFIER: PASS ✅ (model downloaded and loaded in ${Date.now() - t1} ms)`);

@@ -249,8 +249,9 @@ export const VaultSettings = z.object({
   dateFormatHint: z.string().default("MM/DD/YYYY"),
   /** auto-detect application forms on granted sites and show the widget */
   autoDetect: z.boolean().default(true),
-  /** v0.2: on-device intent classifier tier (downloads the model once) */
-  classifierEnabled: z.boolean().default(false),
+  /** v0.2: on-device intent classifier tier; on by default, the model
+   *  downloads once at install (owner decision 2026-09-02), off in Settings */
+  classifierEnabled: z.boolean().default(true),
 });
 export type VaultSettings = z.infer<typeof VaultSettings>;
 

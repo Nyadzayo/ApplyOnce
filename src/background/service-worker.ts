@@ -1,4 +1,5 @@
 import { parseMsg, type Msg } from "@shared/messages";
+import { getSettings } from "@storage/vault";
 import { ensureOffscreen, offscreenRequest } from "./offscreen-bridge";
 import { createJob, updateJob } from "./jobs";
 import { computeDecisions, prepareFiles } from "./mapping";
@@ -23,10 +24,25 @@ installGlobalErrorHandlers("sw");
 // content-script injection, offscreen lifecycle. No long-lived state here —
 // the worker may be killed at any time.
 
+// The classifier is on by default: fetch and cache its model right after
+// install/update so the first fill does not wait for a download. Best-effort;
+// the mapping path loads it lazily anyway.
+async function warmClassifier(): Promise<void> {
+  try {
+    const settings = await getSettings();
+    if (!settings.classifierEnabled) return;
+    const resp = (await offscreenRequest({ kind: "CLASSIFIER_WARMUP" }, 10)) as { ok?: boolean; error?: string } | undefined;
+    if (resp && !resp.ok) console.warn("classifier warmup failed:", resp.error);
+  } catch (e) {
+    console.warn("classifier warmup failed", e);
+  }
+}
+
 chrome.runtime.onInstalled.addListener((details) => {
   if (hasSidePanel()) {
     void chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
   }
+  void warmClassifier();
   void chrome.alarms?.create(HEARTBEAT_ALARM, {
     periodInMinutes: 60 * 24,
     delayInMinutes: 5,
