@@ -1,5 +1,7 @@
 # Chrome Web Store listing — ApplyOnce (paste-ready)
 
+Live listing: https://chromewebstore.google.com/detail/applyonce-job-application/anmljacnioamdkdcohmhbghlbcffbiaf
+
 Derived from docs/ASO-REPORT.md (verified competitor/keyword research).
 Rule: never list an ATS the extension doesn't actually handle.
 

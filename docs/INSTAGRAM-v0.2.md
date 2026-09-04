@@ -44,6 +44,10 @@ Eight random resumes went into our parser. All eight came back with zero words. 
 
 #jobsearch #resume #careertips #jobhunt #chromeextension #opensource #buildinpublic #productivity
 
+## Link in bio
+
+https://chromewebstore.google.com/detail/applyonce-job-application/anmljacnioamdkdcohmhbghlbcffbiaf
+
 ## Notes
 
 - Shots 5, 6, 8, 9 are real screen recordings; record the side panel at 2x scale and crop to 9:16 in edit. The scan fixture and a fixture form page are in the repo, so no personal data appears.

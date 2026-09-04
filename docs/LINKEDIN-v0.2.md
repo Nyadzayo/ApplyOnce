@@ -46,5 +46,7 @@ A 45-second animation: a title card reading "8 resumes in. 0 words out.", a ques
 ## Posting notes
 
 - Upload the MP4 natively; LinkedIn ranks native video above links.
-- Add the store link in the first comment, not the post body.
+- Add the store link in the first comment, not the post body:
+  "Chrome Web Store: https://chromewebstore.google.com/detail/applyonce-job-application/anmljacnioamdkdcohmhbghlbcffbiaf
+  Source and Firefox build: https://github.com/Nyadzayo/ApplyOnce"
 - The numbers are from evals in the repo (evals/), so they are reproducible if anyone asks.
