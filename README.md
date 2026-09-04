@@ -4,9 +4,13 @@
 > existing competitor — see docs/ASO-REPORT.md). Internal storage keys and the
 > IndexedDB name keep the old identifier for data compatibility.
 
-One-click job application autofill, deterministic-first, local-only. No LLM,
-no network calls, no telemetry in v1. See `PLAN.md` for the full design and
-`CLAUDE.md` for agent/contributor rules.
+One-click job application autofill, deterministic-first, local-only. See
+`PLAN.md` for the full design and `CLAUDE.md` for agent/contributor rules.
+
+**Install:** [Chrome Web Store](https://chromewebstore.google.com/detail/applyonce-job-application/anmljacnioamdkdcohmhbghlbcffbiaf) · Firefox: build from source
+(`npm run build:firefox`, see "Load in Firefox") until the AMO listing is live.
+Version 0.2 adds layout-aware resume parsing, on-device OCR for scans, resume
+re-import, and an optional on-device question classifier (PLAN.md Part 9).
 
 ## Commands
 
