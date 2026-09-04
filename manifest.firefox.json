@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "ApplyOnce: Job Application Autofill",
+  "version": "0.2.0",
+  "description": "Autofill job applications on Greenhouse, Lever, Ashby & more from your resume. You review, you submit. Data stays local.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "applyonce@kelvin.nyadzayo16.gmail.com",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["none"],
+        "optional": ["technicalAndInteraction"]
+      }
+    },
+    "gecko_android": {
+      "strict_min_version": "142.0"
+    }
+  },
+  "permissions": ["activeTab", "scripting", "storage", "alarms", "notifications"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png",
+    "256": "icons/icon256.png",
+    "512": "icons/icon512.png"
+  },
+  "commands": {
+    "fill-page": {
+      "suggested_key": { "default": "Alt+Shift+F" },
+      "description": "Fill the job application on this page"
+    }
+  },
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "action": {
+    "default_title": "ApplyOnce: fill this application",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "sidebar_action": {
+    "default_panel": "sidepanel.html",
+    "default_title": "ApplyOnce",
+    "default_icon": "icons/icon48.png",
+    "open_at_install": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "all_frames": true,
+      "match_about_blank": true,
+      "run_at": "document_idle"
+    }
+  ]
+}

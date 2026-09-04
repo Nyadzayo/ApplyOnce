@@ -1,0 +1,266 @@
+{
+ "classic-right-dates--amara.png": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "classic-right-dates--priya.png": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "word-table--amara.png": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "word-table--priya.png": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "linkedin-export--amara.png": {
+  "dates": "month",
+  "minSkills": 3,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "linkedin-export--priya.png": {
+  "dates": "month",
+  "minSkills": 3,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ },
+ "ats-plain--amara.png": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Amara",
+  "lastName": "Okafor",
+  "email": "amara.okafor@gmail.com",
+  "phone": "+234 803 555 0147",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager",
+    "location": "Lagos, Nigeria",
+    "start": "2021-03",
+    "end": "",
+    "current": true
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst",
+    "location": "Lagos, Nigeria",
+    "start": "2018-06",
+    "end": "2021-02",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science",
+    "degree": "BSc"
+   }
+  ]
+ },
+ "ats-plain--priya.png": {
+  "dates": "month",
+  "minSkills": 4,
+  "firstName": "Priya",
+  "lastName": "Raghunathan",
+  "email": "priya.r@outlook.com",
+  "phone": "+91 98765 43210",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate",
+    "location": "Chennai, India",
+    "start": "2019-08",
+    "end": "2023-03",
+    "current": false
+   },
+   {
+    "company": "Tata Consultancy Services",
+    "title": "Intern",
+    "location": "Chennai, India",
+    "start": "2018-05",
+    "end": "2018-07",
+    "current": false
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College",
+    "field": "Accounting and Finance",
+    "degree": "B.Com"
+   }
+  ]
+ }
+}

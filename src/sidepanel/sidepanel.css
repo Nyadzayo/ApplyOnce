@@ -274,6 +274,8 @@ button:focus-visible { outline: 2px solid var(--stamp); outline-offset: 1px; }
 }
 
 .warn { color: var(--warn); font-size: var(--t-sm); }
+.field-row.check input { border-color: var(--warn); }
+.check-tag { color: var(--warn); text-transform: none; letter-spacing: 0; font-weight: 500; }
 .error { color: var(--bad); font-size: var(--t-sm); }
 .ok { color: var(--good); font-size: var(--t-sm); }
 

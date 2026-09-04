@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import type { VaultHook } from "../App";
 import { getTelemetryEnabled, setTelemetryEnabled, track } from "../telemetry";
+import { ClassifierStatus } from "@shared/messages";
+import { CLASSIFIER_DOWNLOAD_MB } from "@shared/classifier-assets";
 import {
   exportVault,
   importVault,
@@ -14,6 +16,7 @@ import {
   saveSettings,
 } from "@storage/vault";
 import { lock, makeSalt, unlock } from "@storage/crypto";
+import { hasAllSitesAccess, requestAllSitesAccess } from "@shared/platform";
 
 // Settings: passphrase encryption, work-everywhere permission, date format,
 // vault export/import (PLAN.md Phase 5 + Part 1).
@@ -23,8 +26,32 @@ export function SettingsView({ vault }: { vault: VaultHook }) {
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<string | null>(null);
   const [telemetry, setTelemetry] = useState(true);
+  const [allSites, setAllSites] = useState(true);
+  const [classifierNote, setClassifierNote] = useState<string | null>(null);
+
+  // status of the on-device model; `warm` also downloads/loads it
+  async function refreshClassifier(warm: boolean) {
+    setClassifierNote("Checking the model...");
+    const status = ClassifierStatus.safeParse(await chrome.runtime.sendMessage({ kind: "CLASSIFIER_STATUS" }).catch(() => null));
+    if (!status.success || !status.data.available) {
+      setClassifierNote("The model is not available on this browser. Everything else keeps working.");
+      return;
+    }
+    if (status.data.cached && !warm) {
+      setClassifierNote("Model ready. It runs entirely on this device.");
+      return;
+    }
+    setClassifierNote(status.data.cached ? "Loading the model..." : `Downloading the model (${CLASSIFIER_DOWNLOAD_MB} MB, once)...`);
+    const result = (await chrome.runtime.sendMessage({ kind: "CLASSIFIER_WARMUP" }).catch(() => null)) as { ok?: boolean; error?: string } | null;
+    setClassifierNote(result?.ok ? "Model ready. It runs entirely on this device." : `Couldn't load the model: ${result?.error ?? "unknown error"}`);
+  }
+  useEffect(() => {
+    if (vault.settings?.classifierEnabled) void refreshClassifier(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [vault.settings?.classifierEnabled]);
   useEffect(() => {
     void getTelemetryEnabled().then(setTelemetry);
+    void hasAllSitesAccess().then(setAllSites);
   }, []);
   const s = vault.settings;
   if (!s) return null;
@@ -82,6 +109,25 @@ export function SettingsView({ vault }: { vault: VaultHook }) {
   return (
     <div>
       <h1>Settings</h1>
+
+      {!allSites && (
+        <div className="callout">
+          <p className="hint">
+            Auto-detection is off: this browser hasn't granted ApplyOnce access
+            to websites yet, so application pages won't be recognised until
+            you allow it. Everything still runs on your device.
+          </p>
+          <button
+            onClick={async () => {
+              const ok = await requestAllSitesAccess();
+              setAllSites(ok);
+              if (ok) setNote("Site access granted. Reload any open application page.");
+            }}
+          >
+            Allow ApplyOnce on all sites
+          </button>
+        </div>
+      )}
 
       <h2>Privacy</h2>
       <p className="hint">
@@ -158,6 +204,27 @@ export function SettingsView({ vault }: { vault: VaultHook }) {
           floating ApplyOnce button)
         </label>
       </div>
+      <div className="checkline">
+        <input
+          type="checkbox"
+          id="clf"
+          checked={s.classifierEnabled}
+          onChange={async (e) => {
+            const on = e.target.checked;
+            await saveSettings({ classifierEnabled: on });
+            track("settings_changed", { field: `classifier_${on ? "on" : "off"}` });
+            await vault.refresh();
+            if (!on) setClassifierNote("Off. Fields the rules can't map are left for you.");
+            // turning it on: the effect above downloads and loads the model
+          }}
+        />
+        <label htmlFor="clf">
+          On-device question classifier for fields the rules can't map (on by
+          default; downloads a {CLASSIFIER_DOWNLOAD_MB} MB model once, runs
+          locally, and its suggestions are always amber for you to check)
+        </label>
+      </div>
+      {classifierNote && <p className="hint">{classifierNote}</p>}
       <div className="btn-row">
         <button
           className="secondary"

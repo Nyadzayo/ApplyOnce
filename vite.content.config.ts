@@ -3,6 +3,8 @@ import { fileURLToPath } from "node:url";
 
 // Content script: single-file IIFE, injected programmatically via
 // chrome.scripting.executeScript({ files: ["content.js"] }).
+const firefox = process.env.TARGET === "firefox";
+
 export default defineConfig({
   resolve: {
     alias: {
@@ -11,7 +13,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: "dist",
+    outDir: firefox ? "dist-firefox" : "dist",
     emptyOutDir: false,
     sourcemap: false,
     lib: {
@@ -20,6 +22,6 @@ export default defineConfig({
       name: "FastApplyContent",
       fileName: () => "content.js",
     },
-    target: "chrome120",
+    target: firefox ? "firefox115" : "chrome120",
   },
 });

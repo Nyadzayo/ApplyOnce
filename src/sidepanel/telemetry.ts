@@ -1,3 +1,4 @@
+import { hasTelemetryConsent, requestTelemetryConsent } from "@shared/platform";
 import type { Msg } from "@shared/messages";
 
 // Thin fire-and-forget emitter for UI surfaces. Events route through the
@@ -38,6 +39,7 @@ const ENABLED_KEY = "fa.telemetry.enabled";
 
 export async function getTelemetryEnabled(): Promise<boolean> {
   try {
+    if (!(await hasTelemetryConsent())) return false; // Firefox install-time choice
     const stored = await chrome.storage.local.get(ENABLED_KEY);
     return stored[ENABLED_KEY] !== false;
   } catch {
@@ -46,6 +48,7 @@ export async function getTelemetryEnabled(): Promise<boolean> {
 }
 
 export async function setTelemetryEnabled(enabled: boolean): Promise<void> {
+  if (enabled && !(await requestTelemetryConsent())) enabled = false;
   if (!enabled) track("telemetry_opt_out");
   await chrome.storage.local.set({ [ENABLED_KEY]: enabled });
 }

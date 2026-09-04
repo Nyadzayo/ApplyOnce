@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { VaultHook } from "../App";
 import { ExplicitSettingsForm, ProfileForm } from "./ProfileForm";
+import { OnboardView } from "./OnboardView";
 import { deleteAnswer, deleteDocument, saveDocument } from "@storage/vault";
 import { saveAnswer } from "@storage/answers";
 
@@ -11,13 +12,43 @@ export function ProfileView({ vault }: { vault: VaultHook }) {
   const [draft, setDraft] = useState(vault.profile);
   const [newQ, setNewQ] = useState("");
   const [newA, setNewA] = useState("");
+  const [reimporting, setReimporting] = useState(false);
+
+  // a re-import (or another tab) replaced the stored profile: refresh the
+  // editor unless the user has unsaved edits here
+  useEffect(() => {
+    if (!dirty && vault.profile) setDraft(vault.profile);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [vault.profile]);
 
   if (!draft || !vault.profile) return null;
+
+  if (reimporting) {
+    return (
+      <OnboardView
+        vault={vault}
+        mode="reimport"
+        onDone={() => setReimporting(false)}
+        onCancel={() => setReimporting(false)}
+      />
+    );
+  }
 
   return (
     <div>
       <h1>Your profile</h1>
       <p className="hint">Stored only on this device.</p>
+
+      <h2>Resume</h2>
+      <p className="hint">
+        Got a newer resume? Import it to update your work history, education
+        and skills, and to replace the file attached to applications.
+      </p>
+      <div className="btn-row">
+        <button className="primary" onClick={() => setReimporting(true)}>
+          Import a new resume
+        </button>
+      </div>
 
       <h2>Documents</h2>
       {vault.documents.map((d) => (
@@ -35,7 +66,7 @@ export function ProfileView({ vault }: { vault: VaultHook }) {
         </div>
       ))}
       <div className="btn-row">
-        <UploadButton label="Upload resume" role="resume" onDone={vault.refresh} />
+        <UploadButton label="Upload resume file only" role="resume" onDone={vault.refresh} />
         <UploadButton label="Upload cover letter" role="coverLetter" onDone={vault.refresh} />
       </div>
 

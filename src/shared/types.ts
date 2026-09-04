@@ -177,6 +177,8 @@ export function emptyProfile(): CandidateProfile {
 export const Evidence = z.object({
   page: z.number().optional(),
   snippet: z.string(),
+  /** high = structural/gazetteer-confirmed; medium = heuristic; low = fallback */
+  confidence: z.enum(["high", "medium", "low"]).optional(),
 });
 export const ProfilePatch = z.object({
   profile: CandidateProfile,
@@ -247,6 +249,9 @@ export const VaultSettings = z.object({
   dateFormatHint: z.string().default("MM/DD/YYYY"),
   /** auto-detect application forms on granted sites and show the widget */
   autoDetect: z.boolean().default(true),
+  /** v0.2: on-device intent classifier tier; on by default, the model
+   *  downloads once at install (owner decision 2026-09-02), off in Settings */
+  classifierEnabled: z.boolean().default(true),
 });
 export type VaultSettings = z.infer<typeof VaultSettings>;
 
@@ -287,6 +292,7 @@ export const MappingSource = z.enum([
   "lexicon",
   "answer-exact",
   "answer-fuzzy",
+  "classifier", // v0.2 on-device intent model (PLAN.md Part 9 s4)
 ]);
 export type MappingSource = z.infer<typeof MappingSource>;
 

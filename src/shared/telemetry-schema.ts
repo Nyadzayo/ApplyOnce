@@ -30,8 +30,17 @@ export const EVENT_SCHEMA: Record<string, readonly string[]> = {
 
   // onboarding / activation funnel
   onboarding_started: ["surface"],
-  resume_import_started: ["method"], // file_pdf | file_docx | file_txt | paste | manual
-  resume_imported: ["method", "warnings"],
+  resume_import_started: ["method", "reimport"], // file_pdf | file_docx | file_txt | file_image | paste | manual
+  resume_imported: [
+    "method", "warnings", "reimport",
+    // parse coverage (PLAN.md Part 9 §3): counts only, never values
+    "work_entries", "education_entries", "skills_count", "contact_fields", "link_fields", "flagged_fields",
+  ],
+  // what the user corrected at review: edited-field counts per group
+  resume_reviewed: [
+    "method", "reimport", "edited_groups", "edited_basics", "edited_links", "edited_work",
+    "edited_education", "edited_skills", "flagged_fields", "flagged_edited",
+  ],
   resume_import_failed: ["method", "reason"],
   onboarding_completed: ["method", "hours_since_install"],
 

@@ -12,6 +12,9 @@ export const RULE_TIER: Record<MappingSource, number> = {
   lexicon: 0.8,
   "answer-exact": 0.9,
   "answer-fuzzy": 0.65,
+  // 0.45*0.75 + 0.30 + 0.25 = 0.8875: a model-mapped field is always amber,
+  // never a silent fill, even with a perfect option match
+  classifier: 0.75,
 };
 
 export type OptionQuality = "exact" | "substring" | "none" | "not-applicable";

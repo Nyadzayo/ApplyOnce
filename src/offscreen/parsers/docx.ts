@@ -1,9 +1,11 @@
 import mammoth from "mammoth";
+import { linesFromHtml, type DocLine } from "@shared/doclines";
 
-// DOCX → raw text via Mammoth. Never render its HTML output unsanitized
-// (PLAN.md Phase 6) — we only use extractRawText.
+// DOCX → DocLine[] via Mammoth's HTML (headings, bold, table rows, links).
+// The HTML is parsed with DOMParser and never rendered (PLAN.md Phase 6).
 
-export async function extractDocxText(data: ArrayBuffer): Promise<string> {
-  const result = await mammoth.extractRawText({ arrayBuffer: data });
-  return result.value;
+export async function extractDocxLines(data: ArrayBuffer): Promise<DocLine[]> {
+  const result = await mammoth.convertToHtml({ arrayBuffer: data });
+  const doc = new DOMParser().parseFromString(result.value, "text/html");
+  return linesFromHtml(doc);
 }

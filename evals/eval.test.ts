@@ -9,7 +9,7 @@
 // Every bug found in the wild becomes a fixture here.
 
 import { describe, expect, it } from "vitest";
-import { readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { scanDocument } from "../src/content/scan/scanner";
 import { mapFields } from "@shared/mapper";
@@ -164,7 +164,9 @@ function runFixture(name: string): FixtureScore {
 describe("fixture eval", () => {
   const fixtureNames = readdirSync(FIXTURES_DIR, { withFileTypes: true })
     .filter((d) => d.isDirectory())
-    .map((d) => d.name);
+    .map((d) => d.name)
+    // only DOM fixtures live here; fixtures/cv/ is the CV parse corpus
+    .filter((n) => existsSync(join(FIXTURES_DIR, n, "page.html")));
 
   const scores = fixtureNames.map(runFixture);
 

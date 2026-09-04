@@ -1,0 +1,13 @@
+Rob Vance
+rob.vance@fastmail.com | 555-301-2299 | Austin, TX
+
+Experience
+
+Site Reliability Engineer at Cloudscale Inc    Since 2021
+- On-call rotation across 3 regions
+
+Systems Administrator, Dell    2016 - 2020
+
+Education
+
+BS Information Systems, Texas State University    2012 - 2016

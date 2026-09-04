@@ -4,9 +4,13 @@
 > existing competitor — see docs/ASO-REPORT.md). Internal storage keys and the
 > IndexedDB name keep the old identifier for data compatibility.
 
-One-click job application autofill, deterministic-first, local-only. No LLM,
-no network calls, no telemetry in v1. See `PLAN.md` for the full design and
-`CLAUDE.md` for agent/contributor rules.
+One-click job application autofill, deterministic-first, local-only. See
+`PLAN.md` for the full design and `CLAUDE.md` for agent/contributor rules.
+
+**Install:** [Chrome Web Store](https://chromewebstore.google.com/detail/applyonce-job-application/anmljacnioamdkdcohmhbghlbcffbiaf) · Firefox: build from source
+(`npm run build:firefox`, see "Load in Firefox") until the AMO listing is live.
+Version 0.2 adds layout-aware resume parsing, on-device OCR for scans, resume
+re-import, and an optional on-device question classifier (PLAN.md Part 9).
 
 ## Commands
 
@@ -15,7 +19,10 @@ npm install
 npm run typecheck   # tsc --noEmit
 npm test            # unit tests (vitest + jsdom)
 npm run eval        # fixture eval: detection recall + mapping precision gates
-npm run build       # production build → dist/
+npm run build       # production build (Chrome) → dist/
+npm run build:firefox   # Firefox build → dist-firefox/
+npm run e2e:firefox     # live Firefox e2e (Playwright Firefox + RDP sideload)
+npm run release:firefox # dist-firefox + AMO upload zip + source zip → release/
 ```
 
 ## Load in Chrome
@@ -28,6 +35,25 @@ npm run build       # production build → dist/
    **Scan this page** → review → **Fill**.
 
 The extension never submits an application — you always click submit yourself.
+
+## Load in Firefox
+
+1. `npm run build:firefox`
+2. `about:debugging#/runtime/this-firefox` → **Load Temporary Add-on…** →
+   select `dist-firefox/manifest.json`.
+3. Firefox treats MV3 site access as optional: open the ApplyOnce sidebar →
+   **Settings** → **Allow ApplyOnce on all sites** (or grant it under
+   `about:addons` → ApplyOnce → Permissions). Auto-detection is silent until
+   then.
+4. Toolbar icon opens the sidebar; the in-page widget's panel button opens
+   the panel in a tab (Firefox only allows opening the sidebar from a direct
+   user gesture).
+
+Differences from Chrome are all runtime feature-detected in
+`src/shared/platform.ts`: no offscreen document (resume parsing runs in the
+background event page), `sidebar_action` instead of `side_panel`, and
+Firefox's install-time data-collection consent gates telemetry. See
+`docs/FIREFOX.md` for the AMO submission steps.
 
 ## Architecture (short version)
 
@@ -55,6 +81,7 @@ The extension never submits an application — you always click submit yourself.
 - Fixture corpus currently holds 4 synthetic pages modeled on real ATS DOM.
   Replace/extend with SingleFile captures of real postings (PLAN.md Phase 0
   target: 40 pages) before trusting the accuracy numbers.
-- Playwright live-browser e2e is not yet set up; the jsdom eval covers
-  scanner+mapper. Filler behavior on real ATS widgets needs the 10-application
-  live gate (PLAN.md Phase 4) before launch.
+- Live-browser e2e scripts live in `e2e/` (`verify-extension.mjs` for
+  Chromium, `verify-firefox.mjs` for Firefox); they run against the
+  synthetic fixtures. Filler behavior on real ATS widgets still needs the
+  10-application live gate (PLAN.md Phase 4) before launch.

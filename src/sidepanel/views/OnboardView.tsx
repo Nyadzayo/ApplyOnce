@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import type { CandidateProfile, ProfilePatch } from "@shared/types";
 import { b64encode, parseMsg } from "@shared/messages";
-import { saveDocument } from "@storage/vault";
+import { deleteDocument, saveDocument } from "@storage/vault";
 import { parseCvText } from "@shared/cvparse";
+import { mergeImportedProfile } from "@shared/profile-merge";
 import type { VaultHook } from "../App";
 import { track } from "../telemetry";
 import { ExplicitSettingsForm, ProfileForm } from "./ProfileForm";
@@ -10,15 +11,30 @@ import { ExplicitSettingsForm, ProfileForm } from "./ProfileForm";
 function importMethod(fileName: string, mime: string): string {
   if (mime.includes("pdf") || /\.pdf$/i.test(fileName)) return "file_pdf";
   if (mime.includes("word") || /\.docx$/i.test(fileName)) return "file_docx";
+  if (mime.startsWith("image/") || /\.(png|jpe?g|webp)$/i.test(fileName)) return "file_image";
   return "file_txt";
 }
+
+const ACCEPT = ".pdf,.docx,.txt,.png,.jpg,.jpeg,.webp";
 
 // Onboarding (PLAN.md Phase 6): drop resume → parse → side-by-side review →
 // explicit-settings step → done. Target < 3 minutes to first fill.
 
 type Step = "drop" | "review" | "explicit";
 
-export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () => void }) {
+export function OnboardView({
+  vault,
+  onDone,
+  mode = "onboard",
+  onCancel,
+}: {
+  vault: VaultHook;
+  onDone: () => void;
+  /** "reimport": replace the resume of an existing profile (Profile tab) */
+  mode?: "onboard" | "reimport";
+  onCancel?: () => void;
+}) {
+  const reimport = mode === "reimport";
   const [step, setStep] = useState<Step>("drop");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -34,8 +50,8 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
   const methodRef = useRef("manual");
 
   useEffect(() => {
-    track("onboarding_started", { surface: "panel" }, true);
-  }, []);
+    if (!reimport) track("onboarding_started", { surface: "panel" }, true);
+  }, [reimport]);
 
   useEffect(() => {
     const listener = (raw: unknown) => {
@@ -51,10 +67,7 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
         });
         return;
       }
-      track("resume_imported", {
-        method: methodRef.current,
-        warnings: msg.patch.warnings.length,
-      });
+      track("resume_imported", { method: methodRef.current, reimport, ...parseCoverage(msg.patch) });
       setPatch(msg.patch);
       setRawText(msg.rawText ?? "");
       setDraft(msg.patch.profile);
@@ -71,7 +84,7 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
       const data = await file.arrayBuffer();
       fileRef.current = { name: file.name, mime: file.type, data };
       methodRef.current = importMethod(file.name, file.type);
-      track("resume_import_started", { method: methodRef.current });
+      track("resume_import_started", { method: methodRef.current, reimport });
       const jobId = crypto.randomUUID();
       jobRef.current = jobId;
       watchdogRef.current = setTimeout(() => {
@@ -79,7 +92,7 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
         setError(
           "Parsing timed out. Try reloading the extension (chrome://extensions → ⟳), or use “Paste text instead”.",
         );
-      }, 45_000);
+      }, 120_000); // OCR of a scan can take a minute in wasm
       const resp: unknown = await chrome.runtime.sendMessage({
         kind: "PARSE_CV_REQUEST",
         jobId,
@@ -101,9 +114,9 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
 
   function handlePaste() {
     methodRef.current = "paste";
-    track("resume_import_started", { method: "paste" });
+    track("resume_import_started", { method: "paste", reimport });
     const p = parseCvText(pasted);
-    track("resume_imported", { method: "paste", warnings: p.warnings.length });
+    track("resume_imported", { method: "paste", reimport, ...parseCoverage(p) });
     setPatch(p);
     setRawText(pasted);
     setDraft(p.profile);
@@ -113,7 +126,19 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
   async function finishReview() {
     if (!draft) return;
     if (fileRef.current) {
+      // the form filler attaches the first stored resume, so a re-import
+      // replaces the old file rather than adding a second one
+      if (reimport) {
+        for (const d of vault.documents.filter((x) => x.role === "resume")) await deleteDocument(d.id);
+      }
       await saveDocument("resume", fileRef.current.name, fileRef.current.mime, fileRef.current.data);
+    }
+    if (patch) track("resume_reviewed", { method: methodRef.current, reimport, ...reviewEdits(patch, draft) });
+    if (reimport && vault.profile) {
+      await vault.persistProfile(mergeImportedProfile(vault.profile, draft));
+      await vault.refresh();
+      onDone();
+      return;
     }
     await vault.persistProfile(draft);
     setStep("explicit");
@@ -142,11 +167,11 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
   if (step === "drop") {
     return (
       <div>
-        <h1>Set up ApplyOnce</h1>
+        <h1>{reimport ? "Import a new resume" : "Set up ApplyOnce"}</h1>
         <p className="hint">
-          Drop your resume. It's parsed on your device and never uploaded
-          anywhere. You'll review everything before it's saved. No resume
-          handy? LinkedIn → your profile → More → "Save to PDF" works too.
+          {reimport
+            ? "Drop your updated resume. Work history, education and skills are replaced by what it says; your explicit answers and anything the new resume leaves out are kept. The stored resume file used for uploads is replaced too."
+            : "Drop your resume. It's parsed on your device and never uploaded anywhere. You'll review everything before it's saved. No resume handy? LinkedIn → your profile → More → \"Save to PDF\" works too."}
         </p>
         {!pasteMode ? (
           <>
@@ -164,10 +189,10 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
                 if (f) void handleFile(f);
               }}
             >
-              {busy ? "Parsing…" : "Drop your resume here or click to choose (PDF/DOCX)"}
+              {busy ? "Parsing…" : "Drop your resume here or click to choose (PDF, DOCX, or a scan/photo)"}
               <input
                 type="file"
-                accept=".pdf,.docx,.txt"
+                accept={ACCEPT}
                 style={{ display: "none" }}
                 onChange={(e) => {
                   const f = e.target.files?.[0];
@@ -179,9 +204,14 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
               <button className="secondary" onClick={() => setPasteMode(true)}>
                 Paste text instead
               </button>
-              <button className="secondary" onClick={() => { methodRef.current = "manual"; track("resume_import_started", { method: "manual" }); setDraft(vault.profile); setPatch({ profile: vault.profile!, evidence: {}, warnings: [] }); setStep("review"); }}>
-                Skip, type it in manually
-              </button>
+              {!reimport && (
+                <button className="secondary" onClick={() => { methodRef.current = "manual"; track("resume_import_started", { method: "manual" }); setDraft(vault.profile); setPatch({ profile: vault.profile!, evidence: {}, warnings: [] }); setStep("review"); }}>
+                  Skip, type it in manually
+                </button>
+              )}
+              {reimport && onCancel && (
+                <button className="secondary" onClick={onCancel}>Cancel</button>
+              )}
             </div>
           </>
         ) : (
@@ -216,8 +246,11 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
         {patch?.warnings.map((w) => (
           <p className="warn" key={w}>⚠ {w}</p>
         ))}
+        {patch && flaggedPaths(patch).size > 0 && (
+          <p className="hint">Fields marked “check this” were read with lower confidence.</p>
+        )}
         <div className={rawText ? "split" : ""}>
-          <ProfileForm profile={draft} onChange={setDraft} />
+          <ProfileForm profile={draft} onChange={setDraft} flags={patch ? flaggedPaths(patch) : undefined} />
           {rawText && (
             <div>
               <h2>Source document</h2>
@@ -227,8 +260,11 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
         </div>
         <div className="btn-row">
           <button className="primary" onClick={() => void finishReview()}>
-            Looks right, continue
+            {reimport ? "Looks right, replace my resume" : "Looks right, continue"}
           </button>
+          {reimport && onCancel && (
+            <button className="secondary" onClick={onCancel}>Cancel</button>
+          )}
         </div>
       </div>
     );
@@ -249,4 +285,61 @@ export function OnboardView({ vault, onDone }: { vault: VaultHook; onDone: () =>
   }
 
   return null;
+}
+
+/** Evidence keys the parser marked below high confidence (PLAN.md Part 9 §5b). */
+function flaggedPaths(patch: ProfilePatch): Set<string> {
+  const out = new Set<string>();
+  for (const [key, ev] of Object.entries(patch.evidence)) {
+    if (ev.confidence && ev.confidence !== "high" && /\./.test(key)) out.add(key);
+  }
+  return out;
+}
+
+/** Structure-only parse coverage for resume_imported (rule 9: counts only). */
+function parseCoverage(patch: ProfilePatch): Record<string, number> {
+  const p = patch.profile;
+  return {
+    warnings: patch.warnings.length,
+    work_entries: p.work.length,
+    education_entries: p.education.length,
+    skills_count: p.skills.length,
+    contact_fields: [p.basics.firstName, p.basics.email, p.basics.phone].filter(Boolean).length,
+    link_fields: Object.values(p.links).filter(Boolean).length,
+    flagged_fields: flaggedPaths(patch).size,
+  };
+}
+
+/** Which field groups the user changed at review, as counts of edited fields. */
+function reviewEdits(patch: ProfilePatch, draft: CandidateProfile): Record<string, number> {
+  const before = patch.profile;
+  const diffCount = (a: Record<string, unknown>, b: Record<string, unknown>) =>
+    Object.keys({ ...a, ...b }).filter((k) => String(a[k] ?? "") !== String(b[k] ?? "")).length;
+  const listDiff = (a: Record<string, unknown>[], b: Record<string, unknown>[]) => {
+    let n = Math.abs(a.length - b.length) * 2; // added/removed entries count as edits
+    for (let i = 0; i < Math.min(a.length, b.length); i++) n += diffCount(a[i]!, b[i]!);
+    return n;
+  };
+  const basics = diffCount(before.basics, draft.basics) + diffCount(before.location, draft.location);
+  const links = diffCount(before.links, draft.links);
+  const work = listDiff(before.work, draft.work);
+  const education = listDiff(before.education, draft.education);
+  const skills = before.skills.join("|") === draft.skills.join("|") ? 0 : 1;
+  const flagged = flaggedPaths(patch);
+  let flaggedEdited = 0;
+  for (const path of flagged) {
+    const read = (obj: CandidateProfile) =>
+      path.split(/[.[\]]+/).filter(Boolean).reduce<unknown>((o, k) => (o as Record<string, unknown> | undefined)?.[k], obj);
+    if (String(read(before) ?? "") !== String(read(draft) ?? "")) flaggedEdited++;
+  }
+  return {
+    edited_basics: basics,
+    edited_links: links,
+    edited_work: work,
+    edited_education: education,
+    edited_skills: skills,
+    edited_groups: [basics, links, work, education, skills].filter((n) => n > 0).length,
+    flagged_fields: flagged.size,
+    flagged_edited: flaggedEdited,
+  };
 }

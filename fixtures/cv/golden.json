@@ -1,0 +1,144 @@
+{
+ "standard-chrono": {
+  "email": "amara.okafor@gmail.com",
+  "firstName": "Amara",
+  "work": [
+   {
+    "company": "PayFlow Technologies",
+    "title": "Senior Product Manager"
+   },
+   {
+    "company": "First Bank of Nigeria",
+    "title": "Product Analyst"
+   }
+  ],
+  "education": [
+   {
+    "school": "University of Lagos",
+    "field": "Computer Science"
+   }
+  ],
+  "minSkills": 4
+ },
+ "decorated-headings": {
+  "email": "dmensah@proton.me",
+  "firstName": "David",
+  "work": [
+   {
+    "company": "Second Cup Coffee",
+    "title": "Barista"
+   },
+   {
+    "company": "Golden Tulip Hotel",
+    "title": "Shift Supervisor"
+   }
+  ],
+  "education": [
+   {
+    "school": "Accra Technical University"
+   }
+  ]
+ },
+ "german-cv": {
+  "email": "lena.hoffmann@web.de",
+  "firstName": "Lena",
+  "work": [
+   {
+    "company": "Zalando SE",
+    "title": "Produktmanagerin"
+   }
+  ],
+  "education": [
+   {
+    "school": "TU Berlin"
+   }
+  ]
+ },
+ "since-dates": {
+  "email": "rob.vance@fastmail.com",
+  "firstName": "Rob",
+  "work": [
+   {
+    "company": "Cloudscale Inc",
+    "title": "Site Reliability Engineer"
+   },
+   {
+    "company": "Dell",
+    "title": "Systems Administrator"
+   }
+  ],
+  "education": [
+   {
+    "school": "Texas State University"
+   }
+  ]
+ },
+ "comma-company": {
+  "email": "priya.r@outlook.com",
+  "firstName": "Priya",
+  "work": [
+   {
+    "company": "Deloitte, LLP",
+    "title": "Audit Associate"
+   }
+  ],
+  "education": [
+   {
+    "school": "Loyola College"
+   }
+  ]
+ },
+ "two-column-linearized": {
+  "email": "marcus@webbdesign.io",
+  "firstName": "Marcus",
+  "work": [
+   {
+    "company": "Framer",
+    "title": "Lead Designer"
+   },
+   {
+    "company": "Airbnb",
+    "title": "Visual Designer"
+   }
+  ],
+  "education": [
+   {
+    "school": "CalArts"
+   }
+  ]
+ },
+ "no-title-words": {
+  "email": "sofia.alvarez@gmail.com",
+  "firstName": "Sofia",
+  "work": [
+   {
+    "company": "Amazon Spain",
+    "title": "Recruiter"
+   },
+   {
+    "company": "El Celler Restaurant",
+    "title": "Sommelier"
+   }
+  ],
+  "education": [
+   {
+    "school": "Universidad Complutense de Madrid"
+   }
+  ]
+ },
+ "ocr-noisy": {
+  "email": "j.kamau@yah00.com",
+  "firstName": "J0hn",
+  "work": [
+   {
+    "company": "Kenya Breweries",
+    "title": "Warehouse Superv1sor"
+   }
+  ],
+  "education": [
+   {
+    "school": "Kenya Institute of Management"
+   }
+  ]
+ }
+}
